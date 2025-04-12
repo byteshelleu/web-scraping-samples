@@ -1,0 +1,367 @@
+2025-04-12 16:21:04,094 - ecommerce_scraper - INFO - E-commerce scraping started
+2025-04-12 16:21:04,095 - ecommerce_scraper - INFO - Setting up WebDriver
+2025-04-12 16:21:05,589 - ecommerce_scraper - INFO - WebDriver initialized
+2025-04-12 16:21:05,589 - ecommerce_page - INFO - Loading e-commerce page: https://webscraper.io/test-sites/e-commerce/allinone
+2025-04-12 16:21:05,590 - ecommerce_page - INFO - Navigating to https://webscraper.io/test-sites/e-commerce/allinone
+2025-04-12 16:21:06,093 - ecommerce_page - INFO - E-commerce page loaded successfully
+2025-04-12 16:21:06,095 - ecommerce_scraper - INFO - Analyzing site navigation structure
+2025-04-12 16:21:06,097 - ecommerce_page - INFO - Analyzing site navigation structure
+2025-04-12 16:21:06,098 - ecommerce_page - INFO - Getting available main categories
+2025-04-12 16:21:06,137 - ecommerce_page - INFO - Found category: Home
+2025-04-12 16:21:06,145 - ecommerce_page - INFO - Found category: Computers
+2025-04-12 16:21:06,156 - ecommerce_page - INFO - Found category: Phones
+2025-04-12 16:21:06,156 - ecommerce_page - INFO - Checking if category needs expanding: Computers
+2025-04-12 16:21:06,209 - ecommerce_page - INFO - Getting available main categories
+2025-04-12 16:21:06,273 - ecommerce_page - INFO - Found category: Home
+2025-04-12 16:21:06,284 - ecommerce_page - INFO - Found category: Computers
+2025-04-12 16:21:06,292 - ecommerce_page - INFO - Found category: Phones
+2025-04-12 16:21:07,902 - ecommerce_page - INFO - Expanded category: Computers
+2025-04-12 16:21:07,903 - ecommerce_page - INFO - Getting subcategories for Computers
+2025-04-12 16:21:07,903 - ecommerce_page - INFO - Checking if category needs expanding: Computers
+2025-04-12 16:21:07,934 - ecommerce_page - INFO - Category Computers is already expanded
+2025-04-12 16:21:07,978 - ecommerce_page - INFO - Found subcategory: Computers
+2025-04-12 16:21:07,985 - ecommerce_page - INFO - Found subcategory: Laptops
+2025-04-12 16:21:07,995 - ecommerce_page - INFO - Found subcategory: Tablets
+2025-04-12 16:21:07,995 - ecommerce_page - INFO - Checking if category needs expanding: Phones
+2025-04-12 16:21:08,017 - ecommerce_page - INFO - Getting available main categories
+2025-04-12 16:21:08,034 - ecommerce_page - INFO - Found category: Home
+2025-04-12 16:21:08,046 - ecommerce_page - INFO - Found category: Computers
+Laptops
+Tablets
+2025-04-12 16:21:08,059 - ecommerce_page - INFO - Found category: Laptops
+2025-04-12 16:21:08,068 - ecommerce_page - INFO - Found category: Tablets
+2025-04-12 16:21:08,077 - ecommerce_page - INFO - Found category: Phones
+2025-04-12 16:21:09,297 - ecommerce_page - INFO - Expanded category: Phones
+2025-04-12 16:21:09,299 - ecommerce_page - INFO - Getting subcategories for Phones
+2025-04-12 16:21:09,300 - ecommerce_page - INFO - Checking if category needs expanding: Phones
+2025-04-12 16:21:09,350 - ecommerce_page - INFO - Category Phones is already expanded
+2025-04-12 16:21:09,390 - ecommerce_page - INFO - Found subcategory: Phones
+2025-04-12 16:21:09,399 - ecommerce_page - INFO - Found subcategory: Touch
+2025-04-12 16:21:09,399 - ecommerce_scraper - INFO - Processing main category: Computers
+2025-04-12 16:21:09,400 - ecommerce_page - INFO - Navigating to category: Computers
+2025-04-12 16:21:09,400 - ecommerce_page - INFO - Getting available main categories
+2025-04-12 16:21:09,414 - ecommerce_page - INFO - Found category: Home
+2025-04-12 16:21:09,423 - ecommerce_page - INFO - Found category: Computers
+2025-04-12 16:21:09,433 - ecommerce_page - INFO - Found category: Phones
+Touch
+2025-04-12 16:21:09,442 - ecommerce_page - INFO - Found category: Touch
+2025-04-12 16:21:09,599 - ecommerce_page - INFO - Navigated to category: Computers
+2025-04-12 16:21:11,600 - ecommerce_page - INFO - Getting products on current page
+2025-04-12 16:21:11,613 - ecommerce_page - INFO - Found 3 products on page
+2025-04-12 16:21:11,730 - ecommerce_page - INFO - Extracted data for product: Lenovo ThinkPa...
+2025-04-12 16:21:11,816 - ecommerce_page - INFO - Extracted data for product: MSI GL62M 7REX...
+2025-04-12 16:21:11,901 - ecommerce_page - INFO - Extracted data for product: MSI GL72M 7RDX
+2025-04-12 16:21:11,902 - ecommerce_page - INFO - Extracted data for 3 products
+2025-04-12 16:21:11,902 - ecommerce_scraper - INFO - Extracted 3 products from Computers
+2025-04-12 16:21:22,303 - ecommerce_page - WARNING - Element not found with locator: ('css selector', '.pagination .next a')
+2025-04-12 16:21:22,305 - ecommerce_page - INFO - Getting subcategories for Computers
+2025-04-12 16:21:22,306 - ecommerce_page - INFO - Checking if category needs expanding: Computers
+2025-04-12 16:21:22,378 - ecommerce_page - INFO - Category Computers is already expanded
+2025-04-12 16:21:22,425 - ecommerce_page - INFO - Found subcategory: Computers
+2025-04-12 16:21:22,435 - ecommerce_page - INFO - Found subcategory: Laptops
+2025-04-12 16:21:22,443 - ecommerce_page - INFO - Found subcategory: Tablets
+2025-04-12 16:21:22,444 - ecommerce_page - INFO - Navigating to category: Computers
+2025-04-12 16:21:22,444 - ecommerce_page - INFO - Getting available main categories
+2025-04-12 16:21:22,459 - ecommerce_page - INFO - Found category: Home
+2025-04-12 16:21:22,469 - ecommerce_page - INFO - Found category: Computers
+Laptops
+Tablets
+2025-04-12 16:21:22,477 - ecommerce_page - INFO - Found category: Laptops
+2025-04-12 16:21:22,485 - ecommerce_page - INFO - Found category: Tablets
+2025-04-12 16:21:22,494 - ecommerce_page - INFO - Found category: Phones
+2025-04-12 16:21:22,494 - ecommerce_page - WARNING - Category not found: Computers
+2025-04-12 16:21:22,494 - ecommerce_scraper - INFO - Processing subcategory: Computers > Computers
+2025-04-12 16:21:22,495 - ecommerce_page - INFO - Navigating to subcategory: Computers under Computers
+2025-04-12 16:21:22,495 - ecommerce_page - INFO - Getting subcategories for Computers
+2025-04-12 16:21:22,496 - ecommerce_page - INFO - Checking if category needs expanding: Computers
+2025-04-12 16:21:22,515 - ecommerce_page - INFO - Category Computers is already expanded
+2025-04-12 16:21:22,572 - ecommerce_page - INFO - Found subcategory: Computers
+2025-04-12 16:21:22,581 - ecommerce_page - INFO - Found subcategory: Laptops
+2025-04-12 16:21:22,590 - ecommerce_page - INFO - Found subcategory: Tablets
+2025-04-12 16:21:22,742 - ecommerce_page - INFO - Navigated to subcategory: Computers
+2025-04-12 16:21:24,744 - ecommerce_page - INFO - Getting products on current page
+2025-04-12 16:21:24,775 - ecommerce_page - INFO - Found 3 products on page
+2025-04-12 16:21:24,900 - ecommerce_page - INFO - Extracted data for product: Lenovo ThinkPa...
+2025-04-12 16:21:24,987 - ecommerce_page - INFO - Extracted data for product: MSI GL62M 7REX...
+2025-04-12 16:21:25,076 - ecommerce_page - INFO - Extracted data for product: MSI GL72M 7RDX
+2025-04-12 16:21:25,076 - ecommerce_page - INFO - Extracted data for 3 products
+2025-04-12 16:21:25,077 - ecommerce_scraper - INFO - Extracted 3 products from Computers > Computers
+2025-04-12 16:21:35,513 - ecommerce_page - WARNING - Element not found with locator: ('css selector', '.pagination .next a')
+2025-04-12 16:21:35,515 - ecommerce_scraper - INFO - Total products in Computers > Computers: 3
+2025-04-12 16:21:35,516 - ecommerce_page - INFO - Navigating to category: Computers
+2025-04-12 16:21:35,519 - ecommerce_page - INFO - Getting available main categories
+2025-04-12 16:21:35,556 - ecommerce_page - INFO - Found category: Home
+2025-04-12 16:21:35,570 - ecommerce_page - INFO - Found category: Computers
+Laptops
+Tablets
+2025-04-12 16:21:35,580 - ecommerce_page - INFO - Found category: Laptops
+2025-04-12 16:21:35,588 - ecommerce_page - INFO - Found category: Tablets
+2025-04-12 16:21:35,598 - ecommerce_page - INFO - Found category: Phones
+2025-04-12 16:21:35,598 - ecommerce_page - WARNING - Category not found: Computers
+2025-04-12 16:21:35,598 - ecommerce_scraper - INFO - Processing subcategory: Computers > Laptops
+2025-04-12 16:21:35,599 - ecommerce_page - INFO - Navigating to subcategory: Laptops under Computers
+2025-04-12 16:21:35,599 - ecommerce_page - INFO - Getting subcategories for Computers
+2025-04-12 16:21:35,600 - ecommerce_page - INFO - Checking if category needs expanding: Computers
+2025-04-12 16:21:35,620 - ecommerce_page - INFO - Category Computers is already expanded
+2025-04-12 16:21:35,654 - ecommerce_page - INFO - Found subcategory: Computers
+2025-04-12 16:21:35,661 - ecommerce_page - INFO - Found subcategory: Laptops
+2025-04-12 16:21:35,671 - ecommerce_page - INFO - Found subcategory: Tablets
+2025-04-12 16:21:36,234 - ecommerce_page - INFO - Navigated to subcategory: Laptops
+2025-04-12 16:21:38,236 - ecommerce_page - INFO - Getting products on current page
+2025-04-12 16:21:38,285 - ecommerce_page - INFO - Found 117 products on page
+2025-04-12 16:21:38,401 - ecommerce_page - INFO - Extracted data for product: Asus VivoBook...
+2025-04-12 16:21:38,546 - ecommerce_page - INFO - Extracted data for product: Prestigio Smar...
+2025-04-12 16:21:38,620 - ecommerce_page - INFO - Extracted data for product: Prestigio Smar...
+2025-04-12 16:21:38,707 - ecommerce_page - INFO - Extracted data for product: Aspire E1-510
+2025-04-12 16:21:38,792 - ecommerce_page - INFO - Extracted data for product: Lenovo V110-15...
+2025-04-12 16:21:38,880 - ecommerce_page - INFO - Extracted data for product: Lenovo V110-15...
+2025-04-12 16:21:38,965 - ecommerce_page - INFO - Extracted data for product: Hewlett Packar...
+2025-04-12 16:21:39,053 - ecommerce_page - INFO - Extracted data for product: Acer Aspire 3...
+2025-04-12 16:21:39,201 - ecommerce_page - INFO - Extracted data for product: Acer Aspire A3...
+2025-04-12 16:21:39,268 - ecommerce_page - INFO - Extracted data for product: Acer Aspire ES...
+2025-04-12 16:21:39,354 - ecommerce_page - INFO - Extracted data for product: Acer Aspire 3...
+2025-04-12 16:21:39,440 - ecommerce_page - INFO - Extracted data for product: Acer Aspire 3...
+2025-04-12 16:21:39,522 - ecommerce_page - INFO - Extracted data for product: Asus VivoBook...
+2025-04-12 16:21:39,614 - ecommerce_page - INFO - Extracted data for product: Asus VivoBook...
+2025-04-12 16:21:39,699 - ecommerce_page - INFO - Extracted data for product: Lenovo ThinkPa...
+2025-04-12 16:21:39,789 - ecommerce_page - INFO - Extracted data for product: Acer Aspire 3...
+2025-04-12 16:21:39,877 - ecommerce_page - INFO - Extracted data for product: Lenovo V110-15...
+2025-04-12 16:21:39,965 - ecommerce_page - INFO - Extracted data for product: Acer Aspire ES...
+2025-04-12 16:21:40,054 - ecommerce_page - INFO - Extracted data for product: Asus VivoBook...
+2025-04-12 16:21:40,140 - ecommerce_page - INFO - Extracted data for product: Packard 255 G2
+2025-04-12 16:21:40,223 - ecommerce_page - INFO - Extracted data for product: Asus EeeBook R...
+2025-04-12 16:21:40,312 - ecommerce_page - INFO - Extracted data for product: Acer Aspire 3...
+2025-04-12 16:21:40,391 - ecommerce_page - INFO - Extracted data for product: Acer Aspire ES...
+2025-04-12 16:21:40,475 - ecommerce_page - INFO - Extracted data for product: Acer Extensa 1...
+2025-04-12 16:21:40,556 - ecommerce_page - INFO - Extracted data for product: Acer Aspire ES...
+2025-04-12 16:21:40,644 - ecommerce_page - INFO - Extracted data for product: Lenovo V110-15...
+2025-04-12 16:21:40,729 - ecommerce_page - INFO - Extracted data for product: Acer Aspire A3...
+2025-04-12 16:21:40,817 - ecommerce_page - INFO - Extracted data for product: Lenovo V110-15...
+2025-04-12 16:21:40,905 - ecommerce_page - INFO - Extracted data for product: Asus VivoBook...
+2025-04-12 16:21:40,993 - ecommerce_page - INFO - Extracted data for product: Acer Aspire ES...
+2025-04-12 16:21:41,074 - ecommerce_page - INFO - Extracted data for product: Lenovo V510 Bl...
+2025-04-12 16:21:41,173 - ecommerce_page - INFO - Extracted data for product: Acer Aspire ES...
+2025-04-12 16:21:41,259 - ecommerce_page - INFO - Extracted data for product: Lenovo V510 Bl...
+2025-04-12 16:21:41,343 - ecommerce_page - INFO - Extracted data for product: Acer Swift 1 S...
+2025-04-12 16:21:41,433 - ecommerce_page - INFO - Extracted data for product: Dell Vostro 15
+2025-04-12 16:21:41,579 - ecommerce_page - INFO - Extracted data for product: Acer Aspire 3...
+2025-04-12 16:21:41,655 - ecommerce_page - INFO - Extracted data for product: Dell Vostro 15...
+2025-04-12 16:21:41,739 - ecommerce_page - INFO - Extracted data for product: Lenovo V510 Bl...
+2025-04-12 16:21:41,818 - ecommerce_page - INFO - Extracted data for product: HP 250 G3
+2025-04-12 16:21:41,901 - ecommerce_page - INFO - Extracted data for product: Acer Spin 5
+2025-04-12 16:21:41,979 - ecommerce_page - INFO - Extracted data for product: HP 350 G1
+2025-04-12 16:21:42,063 - ecommerce_page - INFO - Extracted data for product: Aspire E1-572G
+2025-04-12 16:21:42,154 - ecommerce_page - INFO - Extracted data for product: Pavilion
+2025-04-12 16:21:42,238 - ecommerce_page - INFO - Extracted data for product: Acer Aspire A5...
+2025-04-12 16:21:42,326 - ecommerce_page - INFO - Extracted data for product: Dell Inspiron...
+2025-04-12 16:21:42,411 - ecommerce_page - INFO - Extracted data for product: Asus VivoBook...
+2025-04-12 16:21:42,499 - ecommerce_page - INFO - Extracted data for product: ProBook
+2025-04-12 16:21:42,582 - ecommerce_page - INFO - Extracted data for product: Inspiron 15
+2025-04-12 16:21:42,671 - ecommerce_page - INFO - Extracted data for product: Asus ROG STRIX...
+2025-04-12 16:21:42,753 - ecommerce_page - INFO - Extracted data for product: Acer Nitro 5 A...
+2025-04-12 16:21:42,839 - ecommerce_page - INFO - Extracted data for product: Asus ROG STRIX...
+2025-04-12 16:21:42,926 - ecommerce_page - INFO - Extracted data for product: Lenovo ThinkPa...
+2025-04-12 16:21:43,011 - ecommerce_page - INFO - Extracted data for product: ThinkPad Yoga
+2025-04-12 16:21:43,096 - ecommerce_page - INFO - Extracted data for product: Lenovo ThinkPa...
+2025-04-12 16:21:43,210 - ecommerce_page - INFO - Extracted data for product: Dell Inspiron...
+2025-04-12 16:21:43,293 - ecommerce_page - INFO - Extracted data for product: MSI GL72M 7RDX
+2025-04-12 16:21:43,374 - ecommerce_page - INFO - Extracted data for product: MSI GL72M 7RDX
+2025-04-12 16:21:43,459 - ecommerce_page - INFO - Extracted data for product: Asus ROG Strix...
+2025-04-12 16:21:43,544 - ecommerce_page - INFO - Extracted data for product: Dell Latitude...
+2025-04-12 16:21:43,631 - ecommerce_page - INFO - Extracted data for product: Dell Latitude...
+2025-04-12 16:21:43,720 - ecommerce_page - INFO - Extracted data for product: Lenovo Legion...
+2025-04-12 16:21:43,870 - ecommerce_page - INFO - Extracted data for product: Toshiba Porteg...
+2025-04-12 16:21:43,949 - ecommerce_page - INFO - Extracted data for product: Acer Predator...
+2025-04-12 16:21:44,033 - ecommerce_page - INFO - Extracted data for product: Acer Aspire 7...
+2025-04-12 16:21:44,120 - ecommerce_page - INFO - Extracted data for product: Dell Inspiron...
+2025-04-12 16:21:44,203 - ecommerce_page - INFO - Extracted data for product: Dell Latitude...
+2025-04-12 16:21:44,286 - ecommerce_page - INFO - Extracted data for product: Lenovo Legion...
+2025-04-12 16:21:44,366 - ecommerce_page - INFO - Extracted data for product: Asus AsusPro A...
+2025-04-12 16:21:44,447 - ecommerce_page - INFO - Extracted data for product: Acer Nitro 5 A...
+2025-04-12 16:21:44,536 - ecommerce_page - INFO - Extracted data for product: Dell Latitude...
+2025-04-12 16:21:44,622 - ecommerce_page - INFO - Extracted data for product: Dell Inspiron...
+2025-04-12 16:21:44,713 - ecommerce_page - INFO - Extracted data for product: Dell Latitude...
+2025-04-12 16:21:44,797 - ecommerce_page - INFO - Extracted data for product: Lenovo Legion...
+2025-04-12 16:21:44,883 - ecommerce_page - INFO - Extracted data for product: MSI GP62M 7RDX...
+2025-04-12 16:21:44,972 - ecommerce_page - INFO - Extracted data for product: Lenovo Yoga 72...
+2025-04-12 16:21:45,062 - ecommerce_page - INFO - Extracted data for product: Toshiba Porteg...
+2025-04-12 16:21:45,145 - ecommerce_page - INFO - Extracted data for product: Acer TravelMat...
+2025-04-12 16:21:45,238 - ecommerce_page - INFO - Extracted data for product: Dell Latitude...
+2025-04-12 16:21:45,322 - ecommerce_page - INFO - Extracted data for product: ThinkPad T540p
+2025-04-12 16:21:45,407 - ecommerce_page - INFO - Extracted data for product: MSI GS63 7RD S...
+2025-04-12 16:21:45,491 - ecommerce_page - INFO - Extracted data for product: Dell Latitude...
+2025-04-12 16:21:45,576 - ecommerce_page - INFO - Extracted data for product: Acer Predator...
+2025-04-12 16:21:45,661 - ecommerce_page - INFO - Extracted data for product: MSI GL62M 7REX
+2025-04-12 16:21:45,747 - ecommerce_page - INFO - Extracted data for product: MSI GL62M 7REX...
+2025-04-12 16:21:45,889 - ecommerce_page - INFO - Extracted data for product: Lenovo Yoga 91...
+2025-04-12 16:21:45,959 - ecommerce_page - INFO - Extracted data for product: Toshiba Porteg...
+2025-04-12 16:21:46,038 - ecommerce_page - INFO - Extracted data for product: Lenovo IdeaPad...
+2025-04-12 16:21:46,117 - ecommerce_page - INFO - Extracted data for product: Acer Predator...
+2025-04-12 16:21:46,194 - ecommerce_page - INFO - Extracted data for product: ThinkPad Yoga
+2025-04-12 16:21:46,268 - ecommerce_page - INFO - Extracted data for product: Asus VivoBook...
+2025-04-12 16:21:46,343 - ecommerce_page - INFO - Extracted data for product: Dell Latitude...
+2025-04-12 16:21:46,431 - ecommerce_page - INFO - Extracted data for product: Asus ZenBook U...
+2025-04-12 16:21:46,510 - ecommerce_page - INFO - Extracted data for product: ThinkPad X230
+2025-04-12 16:21:46,594 - ecommerce_page - INFO - Extracted data for product: Asus ROG Strix...
+2025-04-12 16:21:46,684 - ecommerce_page - INFO - Extracted data for product: Apple MacBook...
+2025-04-12 16:21:46,774 - ecommerce_page - INFO - Extracted data for product: Dell Latitude...
+2025-04-12 16:21:46,859 - ecommerce_page - INFO - Extracted data for product: Hewlett Packar...
+2025-04-12 16:21:46,941 - ecommerce_page - INFO - Extracted data for product: Dell XPS 13
+2025-04-12 16:21:47,026 - ecommerce_page - INFO - Extracted data for product: Toshiba Porteg...
+2025-04-12 16:21:47,114 - ecommerce_page - INFO - Extracted data for product: MSI GL62VR 7RF...
+2025-04-12 16:21:47,208 - ecommerce_page - INFO - Extracted data for product: Dell Latitude...
+2025-04-12 16:21:47,297 - ecommerce_page - INFO - Extracted data for product: ThinkPad X240
+2025-04-12 16:21:47,381 - ecommerce_page - INFO - Extracted data for product: Hewlett Packar...
+2025-04-12 16:21:47,467 - ecommerce_page - INFO - Extracted data for product: Apple MacBook...
+2025-04-12 16:21:47,553 - ecommerce_page - INFO - Extracted data for product: Dell Latitude...
+2025-04-12 16:21:47,690 - ecommerce_page - INFO - Extracted data for product: Dell Latitude...
+2025-04-12 16:21:47,757 - ecommerce_page - INFO - Extracted data for product: Dell Latitude...
+2025-04-12 16:21:47,835 - ecommerce_page - INFO - Extracted data for product: Apple MacBook...
+2025-04-12 16:21:47,917 - ecommerce_page - INFO - Extracted data for product: Lenovo ThinkPa...
+2025-04-12 16:21:48,003 - ecommerce_page - INFO - Extracted data for product: Lenovo ThinkPa...
+2025-04-12 16:21:48,079 - ecommerce_page - INFO - Extracted data for product: Toshiba Porteg...
+2025-04-12 16:21:48,154 - ecommerce_page - INFO - Extracted data for product: Asus ASUSPRO B...
+2025-04-12 16:21:48,239 - ecommerce_page - INFO - Extracted data for product: Lenovo Legion...
+2025-04-12 16:21:48,321 - ecommerce_page - INFO - Extracted data for product: Asus ROG Strix...
+2025-04-12 16:21:48,406 - ecommerce_page - INFO - Extracted data for product: Asus ROG Strix...
+2025-04-12 16:21:48,489 - ecommerce_page - INFO - Extracted data for product: Asus ROG Strix...
+2025-04-12 16:21:48,577 - ecommerce_page - INFO - Extracted data for product: Asus ROG Strix...
+2025-04-12 16:21:48,577 - ecommerce_page - INFO - Extracted data for 117 products
+2025-04-12 16:21:48,578 - ecommerce_scraper - INFO - Extracted 117 products from Computers > Laptops
+2025-04-12 16:21:59,027 - ecommerce_page - WARNING - Element not found with locator: ('css selector', '.pagination .next a')
+2025-04-12 16:21:59,030 - ecommerce_scraper - INFO - Total products in Computers > Laptops: 117
+2025-04-12 16:21:59,032 - ecommerce_page - INFO - Navigating to category: Computers
+2025-04-12 16:21:59,034 - ecommerce_page - INFO - Getting available main categories
+2025-04-12 16:21:59,076 - ecommerce_page - INFO - Found category: Home
+2025-04-12 16:21:59,088 - ecommerce_page - INFO - Found category: Computers
+Laptops
+Tablets
+2025-04-12 16:21:59,098 - ecommerce_page - INFO - Found category: Laptops
+2025-04-12 16:21:59,107 - ecommerce_page - INFO - Found category: Tablets
+2025-04-12 16:21:59,115 - ecommerce_page - INFO - Found category: Phones
+2025-04-12 16:21:59,116 - ecommerce_page - WARNING - Category not found: Computers
+2025-04-12 16:21:59,116 - ecommerce_scraper - INFO - Processing subcategory: Computers > Tablets
+2025-04-12 16:21:59,117 - ecommerce_page - INFO - Navigating to subcategory: Tablets under Computers
+2025-04-12 16:21:59,117 - ecommerce_page - INFO - Getting subcategories for Computers
+2025-04-12 16:21:59,117 - ecommerce_page - INFO - Checking if category needs expanding: Computers
+2025-04-12 16:21:59,137 - ecommerce_page - INFO - Category Computers is already expanded
+2025-04-12 16:21:59,170 - ecommerce_page - INFO - Found subcategory: Computers
+2025-04-12 16:21:59,176 - ecommerce_page - INFO - Found subcategory: Laptops
+2025-04-12 16:21:59,185 - ecommerce_page - INFO - Found subcategory: Tablets
+2025-04-12 16:21:59,692 - ecommerce_page - INFO - Navigated to subcategory: Tablets
+2025-04-12 16:22:01,693 - ecommerce_page - INFO - Getting products on current page
+2025-04-12 16:22:01,726 - ecommerce_page - INFO - Found 21 products on page
+2025-04-12 16:22:01,824 - ecommerce_page - INFO - Extracted data for product: Lenovo IdeaTab
+2025-04-12 16:22:01,923 - ecommerce_page - INFO - Extracted data for product: IdeaTab A3500L
+2025-04-12 16:22:02,010 - ecommerce_page - INFO - Extracted data for product: Acer Iconia
+2025-04-12 16:22:02,093 - ecommerce_page - INFO - Extracted data for product: Galaxy Tab 3
+2025-04-12 16:22:02,175 - ecommerce_page - INFO - Extracted data for product: Iconia B1-730H...
+2025-04-12 16:22:02,256 - ecommerce_page - INFO - Extracted data for product: Memo Pad HD 7
+2025-04-12 16:22:02,392 - ecommerce_page - INFO - Extracted data for product: Asus MeMO Pad
+2025-04-12 16:22:02,474 - ecommerce_page - INFO - Extracted data for product: Amazon Kindle
+2025-04-12 16:22:02,559 - ecommerce_page - INFO - Extracted data for product: Galaxy Tab 3
+2025-04-12 16:22:02,638 - ecommerce_page - INFO - Extracted data for product: IdeaTab A8-50
+2025-04-12 16:22:02,725 - ecommerce_page - INFO - Extracted data for product: MeMO Pad 7
+2025-04-12 16:22:02,804 - ecommerce_page - INFO - Extracted data for product: IdeaTab A3500-...
+2025-04-12 16:22:02,887 - ecommerce_page - INFO - Extracted data for product: IdeaTab S5000
+2025-04-12 16:22:02,973 - ecommerce_page - INFO - Extracted data for product: Galaxy Tab 4
+2025-04-12 16:22:03,055 - ecommerce_page - INFO - Extracted data for product: Galaxy Tab
+2025-04-12 16:22:03,145 - ecommerce_page - INFO - Extracted data for product: MeMo PAD FHD 1...
+2025-04-12 16:22:03,242 - ecommerce_page - INFO - Extracted data for product: Galaxy Note
+2025-04-12 16:22:03,339 - ecommerce_page - INFO - Extracted data for product: Galaxy Note
+2025-04-12 16:22:03,420 - ecommerce_page - INFO - Extracted data for product: iPad Mini Reti...
+2025-04-12 16:22:03,505 - ecommerce_page - INFO - Extracted data for product: Galaxy Note 10...
+2025-04-12 16:22:03,591 - ecommerce_page - INFO - Extracted data for product: Apple iPad Air
+2025-04-12 16:22:03,592 - ecommerce_page - INFO - Extracted data for 21 products
+2025-04-12 16:22:03,592 - ecommerce_scraper - INFO - Extracted 21 products from Computers > Tablets
+2025-04-12 16:22:14,041 - ecommerce_page - WARNING - Element not found with locator: ('css selector', '.pagination .next a')
+2025-04-12 16:22:14,043 - ecommerce_scraper - INFO - Total products in Computers > Tablets: 21
+2025-04-12 16:22:14,045 - ecommerce_scraper - INFO - Total products in category Computers (including subcategories): 144
+2025-04-12 16:22:14,046 - ecommerce_scraper - INFO - Processing main category: Phones
+2025-04-12 16:22:14,047 - ecommerce_page - INFO - Navigating to category: Phones
+2025-04-12 16:22:14,048 - ecommerce_page - INFO - Getting available main categories
+2025-04-12 16:22:14,077 - ecommerce_page - INFO - Found category: Home
+2025-04-12 16:22:14,089 - ecommerce_page - INFO - Found category: Computers
+Laptops
+Tablets
+2025-04-12 16:22:14,098 - ecommerce_page - INFO - Found category: Laptops
+2025-04-12 16:22:14,106 - ecommerce_page - INFO - Found category: Tablets
+2025-04-12 16:22:14,113 - ecommerce_page - INFO - Found category: Phones
+2025-04-12 16:22:14,656 - ecommerce_page - INFO - Navigated to category: Phones
+2025-04-12 16:22:16,657 - ecommerce_page - INFO - Getting products on current page
+2025-04-12 16:22:16,687 - ecommerce_page - INFO - Found 3 products on page
+2025-04-12 16:22:16,789 - ecommerce_page - INFO - Extracted data for product: Ubuntu Edge
+2025-04-12 16:22:16,871 - ecommerce_page - INFO - Extracted data for product: Iphone
+2025-04-12 16:22:16,971 - ecommerce_page - INFO - Extracted data for product: Nokia X
+2025-04-12 16:22:16,971 - ecommerce_page - INFO - Extracted data for 3 products
+2025-04-12 16:22:16,971 - ecommerce_scraper - INFO - Extracted 3 products from Phones
+2025-04-12 16:22:27,416 - ecommerce_page - WARNING - Element not found with locator: ('css selector', '.pagination .next a')
+2025-04-12 16:22:27,417 - ecommerce_page - INFO - Getting subcategories for Phones
+2025-04-12 16:22:27,417 - ecommerce_page - INFO - Checking if category needs expanding: Phones
+2025-04-12 16:22:27,442 - ecommerce_page - INFO - Category Phones is already expanded
+2025-04-12 16:22:27,475 - ecommerce_page - INFO - Found subcategory: Phones
+2025-04-12 16:22:27,484 - ecommerce_page - INFO - Found subcategory: Touch
+2025-04-12 16:22:27,484 - ecommerce_page - INFO - Navigating to category: Phones
+2025-04-12 16:22:27,484 - ecommerce_page - INFO - Getting available main categories
+2025-04-12 16:22:27,499 - ecommerce_page - INFO - Found category: Home
+2025-04-12 16:22:27,507 - ecommerce_page - INFO - Found category: Computers
+2025-04-12 16:22:27,517 - ecommerce_page - INFO - Found category: Phones
+Touch
+2025-04-12 16:22:27,525 - ecommerce_page - INFO - Found category: Touch
+2025-04-12 16:22:27,526 - ecommerce_page - WARNING - Category not found: Phones
+2025-04-12 16:22:27,526 - ecommerce_scraper - INFO - Processing subcategory: Phones > Phones
+2025-04-12 16:22:27,526 - ecommerce_page - INFO - Navigating to subcategory: Phones under Phones
+2025-04-12 16:22:27,527 - ecommerce_page - INFO - Getting subcategories for Phones
+2025-04-12 16:22:27,527 - ecommerce_page - INFO - Checking if category needs expanding: Phones
+2025-04-12 16:22:27,551 - ecommerce_page - INFO - Category Phones is already expanded
+2025-04-12 16:22:27,586 - ecommerce_page - INFO - Found subcategory: Phones
+2025-04-12 16:22:27,594 - ecommerce_page - INFO - Found subcategory: Touch
+2025-04-12 16:22:27,687 - ecommerce_page - INFO - Navigated to subcategory: Phones
+2025-04-12 16:22:29,688 - ecommerce_page - INFO - Getting products on current page
+2025-04-12 16:22:29,722 - ecommerce_page - INFO - Found 3 products on page
+2025-04-12 16:22:29,815 - ecommerce_page - INFO - Extracted data for product: Ubuntu Edge
+2025-04-12 16:22:29,902 - ecommerce_page - INFO - Extracted data for product: Iphone
+2025-04-12 16:22:29,983 - ecommerce_page - INFO - Extracted data for product: Nokia X
+2025-04-12 16:22:29,983 - ecommerce_page - INFO - Extracted data for 3 products
+2025-04-12 16:22:29,984 - ecommerce_scraper - INFO - Extracted 3 products from Phones > Phones
+2025-04-12 16:22:40,429 - ecommerce_page - WARNING - Element not found with locator: ('css selector', '.pagination .next a')
+2025-04-12 16:22:40,431 - ecommerce_scraper - INFO - Total products in Phones > Phones: 3
+2025-04-12 16:22:40,432 - ecommerce_page - INFO - Navigating to category: Phones
+2025-04-12 16:22:40,434 - ecommerce_page - INFO - Getting available main categories
+2025-04-12 16:22:40,476 - ecommerce_page - INFO - Found category: Home
+2025-04-12 16:22:40,486 - ecommerce_page - INFO - Found category: Computers
+2025-04-12 16:22:40,497 - ecommerce_page - INFO - Found category: Phones
+Touch
+2025-04-12 16:22:40,504 - ecommerce_page - INFO - Found category: Touch
+2025-04-12 16:22:40,505 - ecommerce_page - WARNING - Category not found: Phones
+2025-04-12 16:22:40,505 - ecommerce_scraper - INFO - Processing subcategory: Phones > Touch
+2025-04-12 16:22:40,505 - ecommerce_page - INFO - Navigating to subcategory: Touch under Phones
+2025-04-12 16:22:40,506 - ecommerce_page - INFO - Getting subcategories for Phones
+2025-04-12 16:22:40,506 - ecommerce_page - INFO - Checking if category needs expanding: Phones
+2025-04-12 16:22:40,525 - ecommerce_page - INFO - Category Phones is already expanded
+2025-04-12 16:22:40,561 - ecommerce_page - INFO - Found subcategory: Phones
+2025-04-12 16:22:40,570 - ecommerce_page - INFO - Found subcategory: Touch
+2025-04-12 16:22:41,169 - ecommerce_page - INFO - Navigated to subcategory: Touch
+2025-04-12 16:22:43,171 - ecommerce_page - INFO - Getting products on current page
+2025-04-12 16:22:43,199 - ecommerce_page - INFO - Found 9 products on page
+2025-04-12 16:22:43,288 - ecommerce_page - INFO - Extracted data for product: Nokia 123
+2025-04-12 16:22:43,374 - ecommerce_page - INFO - Extracted data for product: LG Optimus
+2025-04-12 16:22:43,468 - ecommerce_page - INFO - Extracted data for product: Samsung Galaxy
+2025-04-12 16:22:43,546 - ecommerce_page - INFO - Extracted data for product: Nokia X
+2025-04-12 16:22:43,634 - ecommerce_page - INFO - Extracted data for product: Sony Xperia
+2025-04-12 16:22:43,721 - ecommerce_page - INFO - Extracted data for product: Ubuntu Edge
+2025-04-12 16:22:43,806 - ecommerce_page - INFO - Extracted data for product: Iphone
+2025-04-12 16:22:43,889 - ecommerce_page - INFO - Extracted data for product: Iphone
+2025-04-12 16:22:44,026 - ecommerce_page - INFO - Extracted data for product: Iphone
+2025-04-12 16:22:44,026 - ecommerce_page - INFO - Extracted data for 9 products
+2025-04-12 16:22:44,027 - ecommerce_scraper - INFO - Extracted 9 products from Phones > Touch
+2025-04-12 16:22:54,471 - ecommerce_page - WARNING - Element not found with locator: ('css selector', '.pagination .next a')
+2025-04-12 16:22:54,473 - ecommerce_scraper - INFO - Total products in Phones > Touch: 9
+2025-04-12 16:22:54,475 - ecommerce_scraper - INFO - Total products in category Phones (including subcategories): 15
+2025-04-12 16:22:54,477 - data_handler - INFO - Data validation: 159 valid items out of 159
+2025-04-12 16:22:54,482 - data_handler - INFO - Processed data for 159 products
+2025-04-12 16:22:54,488 - data_handler - INFO - Created DataFrame with 159 rows and 9 columns
+2025-04-12 16:22:54,504 - data_handler - INFO - Data saved to scraped_products.csv
+2025-04-12 16:22:54,505 - data_handler - INFO - Data saved to C:\Users\drago\CascadeProjects\web-scraping-samples\sample-e-commerce-scraping\scraped_products.csv
+2025-04-12 16:22:54,507 - ecommerce_scraper - INFO - Successfully extracted and saved 159 total products
+2025-04-12 16:22:57,118 - ecommerce_scraper - INFO - WebDriver closed
