@@ -1,0 +1,14 @@
+2025-04-12 11:54:49,833 - weather_scraper - INFO - Weather scraping started for location: New York
+2025-04-12 11:54:51,590 - weather_scraper - INFO - WebDriver initialized
+2025-04-12 11:54:51,591 - weather_scraper - INFO - Navigating to https://www.weather.gov/
+2025-04-12 11:54:52,835 - weather_scraper - INFO - Searching for weather in: New York
+2025-04-12 11:54:58,016 - weather_scraper - INFO - Entered text 'New York' into ('id', 'inputstring')
+2025-04-12 11:54:58,017 - weather_scraper - INFO - Navigating directly to search URL: https://search.usa.gov/search?utf8=&affiliate=nws.noaa.gov&query=New York
+2025-04-12 11:55:25,791 - weather_scraper - INFO - Current URL after search: https://search.usa.gov/search?utf8=&affiliate=nws.noaa.gov&query=New%20York
+2025-04-12 11:55:25,791 - weather_scraper - INFO - Search completed for: New York
+2025-04-12 11:55:30,820 - weather_scraper - INFO - Extracting forecast data
+2025-04-12 11:55:30,833 - weather_scraper - WARNING - Seven day forecast container not found
+2025-04-12 11:55:30,834 - weather_scraper - WARNING - Empty weather data received
+2025-04-12 11:55:30,834 - weather_scraper - ERROR - Unable to process weather data - validation failed
+2025-04-12 11:55:30,835 - weather_scraper - INFO - Closing WebDriver
+2025-04-12 11:55:33,440 - weather_scraper - INFO - Weather scraping completed

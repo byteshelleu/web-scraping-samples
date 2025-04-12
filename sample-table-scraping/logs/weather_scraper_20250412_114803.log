@@ -1,0 +1,5 @@
+2025-04-12 11:48:03,367 - weather_scraper - INFO - Weather scraping started for location: New York
+2025-04-12 11:48:05,114 - weather_scraper - INFO - WebDriver initialized
+2025-04-12 11:48:05,115 - weather_scraper - INFO - Navigating to https://www.weather.gov/
+2025-04-12 11:48:06,316 - weather_scraper - INFO - Searching for weather in: New York
+2025-04-12 11:48:06,493 - weather_scraper - INFO - Entered location: New York

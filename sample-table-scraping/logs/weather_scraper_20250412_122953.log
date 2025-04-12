@@ -1,0 +1,29 @@
+2025-04-12 12:29:53,625 - weather_scraper - INFO - Table scraping started
+2025-04-12 12:29:55,899 - weather_scraper - INFO - WebDriver initialized
+2025-04-12 12:29:55,899 - weather_scraper - INFO - Navigating to https://webscraper.io/test-sites/tables
+2025-04-12 12:29:56,745 - weather_scraper - INFO - Navigated to table test page: https://webscraper.io/test-sites/tables
+2025-04-12 12:29:56,828 - weather_scraper - INFO - No pagination found
+2025-04-12 12:30:01,889 - weather_scraper - INFO - Found table header: #
+2025-04-12 12:30:01,898 - weather_scraper - INFO - Found table header: First Name
+2025-04-12 12:30:01,909 - weather_scraper - INFO - Found table header: Last Name
+2025-04-12 12:30:01,918 - weather_scraper - INFO - Found table header: Username
+2025-04-12 12:30:01,927 - weather_scraper - INFO - Found table header: #
+2025-04-12 12:30:01,936 - weather_scraper - INFO - Found table header: First Name
+2025-04-12 12:30:01,945 - weather_scraper - INFO - Found table header: Last Name
+2025-04-12 12:30:01,954 - weather_scraper - INFO - Found table header: Username
+2025-04-12 12:30:01,965 - weather_scraper - INFO - Found 6 data rows in table
+2025-04-12 12:30:02,010 - weather_scraper - INFO - Extracted row data: {'#': '1', 'First Name': 'Mark', 'Last Name': 'Otto', 'Username': '@mdo'}
+2025-04-12 12:30:02,055 - weather_scraper - INFO - Extracted row data: {'#': '2', 'First Name': 'Jacob', 'Last Name': 'Thornton', 'Username': '@fat'}
+2025-04-12 12:30:02,098 - weather_scraper - INFO - Extracted row data: {'#': '3', 'First Name': 'Larry', 'Last Name': 'the Bird', 'Username': '@twitter'}
+2025-04-12 12:30:02,138 - weather_scraper - INFO - Extracted row data: {'#': '4', 'First Name': 'Harry', 'Last Name': 'Potter', 'Username': '@hp'}
+2025-04-12 12:30:02,178 - weather_scraper - INFO - Extracted row data: {'#': '5', 'First Name': 'John', 'Last Name': 'Snow', 'Username': '@dunno'}
+2025-04-12 12:30:02,218 - weather_scraper - INFO - Extracted row data: {'#': '6', 'First Name': 'Tim', 'Last Name': 'Bean', 'Username': '@timbean'}
+2025-04-12 12:30:02,219 - weather_scraper - INFO - Extracted 6 rows from page 1
+2025-04-12 12:30:02,219 - weather_scraper - INFO - Data validation passed: 6 valid items
+2025-04-12 12:30:02,219 - weather_scraper - INFO - Processed table data with price extraction
+2025-04-12 12:30:02,220 - weather_scraper - INFO - Successfully extracted 6 total rows
+2025-04-12 12:30:02,228 - weather_scraper - INFO - Created DataFrame with 6 rows and 4 columns
+2025-04-12 12:30:02,234 - weather_scraper - INFO - Data saved to scraped_data.csv
+2025-04-12 12:30:02,235 - weather_scraper - INFO - Data saved to C:\Users\drago\CascadeProjects\sample-table-scraper\scraped_data.csv
+2025-04-12 12:30:02,235 - weather_scraper - INFO - Closing WebDriver
+2025-04-12 12:30:04,423 - weather_scraper - INFO - Table scraping completed

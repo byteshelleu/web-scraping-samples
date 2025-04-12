@@ -1,0 +1,14 @@
+2025-04-12 11:27:51,857 - weather_scraper - INFO - Weather scraping started for location: New York, NY
+2025-04-12 11:27:53,676 - weather_scraper - INFO - WebDriver initialized
+2025-04-12 11:27:53,676 - weather_scraper - INFO - Navigating to https://www.weather.gov/
+2025-04-12 11:27:54,984 - weather_scraper - INFO - Searching for weather in: New York, NY
+2025-04-12 11:27:55,151 - weather_scraper - INFO - Entered text: New York, NY
+2025-04-12 11:27:55,152 - weather_scraper - INFO - Using JavaScript to click search button
+2025-04-12 11:27:55,176 - weather_scraper - INFO - Executed JavaScript click
+2025-04-12 11:27:55,176 - weather_scraper - INFO - Search completed for: New York, NY
+2025-04-12 11:28:05,314 - weather_scraper - INFO - Extracting forecast data
+2025-04-12 11:28:10,341 - weather_scraper - WARNING - Seven day forecast container not found
+2025-04-12 11:28:10,341 - weather_scraper - WARNING - Empty weather data received
+2025-04-12 11:28:10,341 - weather_scraper - ERROR - Unable to process weather data - validation failed
+2025-04-12 11:28:10,342 - weather_scraper - INFO - Closing WebDriver
+2025-04-12 11:28:12,965 - weather_scraper - INFO - Weather scraping completed
