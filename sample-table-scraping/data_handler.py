@@ -2,6 +2,7 @@
 
 import pandas as pd
 import os
+import re
 from config import DEFAULT_OUTPUT_FILE
 from logger import logger
 
@@ -17,6 +18,9 @@ class DataHandler:
         # Convert to DataFrame
         df = pd.DataFrame(data)
         logger.info(f"Created DataFrame with {len(df)} rows and {len(df.columns)} columns")
+        
+        # Ensure directory exists
+        os.makedirs(os.path.dirname(os.path.abspath(filename)), exist_ok=True)
         
         # Save to CSV
         df.to_csv(filename, index=False)
@@ -43,6 +47,10 @@ class DataHandler:
                 logger.error("Data contains non-dictionary items")
                 return False
                 
+            # Check if dictionary has required keys
+            if not item:
+                logger.warning("Data contains an empty dictionary")
+                
         logger.info(f"Data validation passed: {len(data)} valid items")
         return True
     
@@ -54,8 +62,71 @@ class DataHandler:
             
         # Extract numeric values from price column
         for item in data:
+            # Process Price column if it exists
             if 'Price' in item:
-                item['Price_Value'] = 0.0 if not item['Price'].replace('$', '').replace(',', '').isdigit() else float(item['Price'].replace('$', '').replace(',', ''))
+                # Extract numeric values using regex to handle various formats
+                # This handles formats like $1,234.56, 1234.56, €1.234,56, etc.
+                price_text = item['Price']
+                if price_text is None:
+                    item['Price_Value'] = 0.0
+                    continue
                     
-        logger.info("Processed table data with price extraction")
+                # Remove currency symbols and spaces
+                clean_price = price_text.replace('$', '').replace('€', '').replace('£', '').strip()
+                
+                # Extract numbers (allowing for different decimal/thousand separators)
+                price_match = re.search(r'([\d,\.]+)', clean_price)
+                if price_match:
+                    # Get the matched price and prepare for conversion
+                    price_str = price_match.group(1)
+                    
+                    # Handle US format ($1,234.56)
+                    if ',' in price_str and '.' in price_str and price_str.index(',') < price_str.index('.'):
+                        price_str = price_str.replace(',', '')
+                    # Handle European format (€1.234,56)
+                    elif ',' in price_str and '.' in price_str and price_str.index('.') < price_str.index(','):
+                        price_str = price_str.replace('.', '').replace(',', '.')
+                    # Handle simple comma as decimal (€1,99)
+                    elif ',' in price_str and '.' not in price_str:
+                        price_str = price_str.replace(',', '.')
+                    
+                    try:
+                        item['Price_Value'] = float(price_str)
+                    except ValueError:
+                        logger.warning(f"Could not convert price '{price_text}' to float")
+                        item['Price_Value'] = 0.0
+                else:
+                    logger.warning(f"No numeric value found in price: '{price_text}'")
+                    item['Price_Value'] = 0.0
+            
+            # Process any other numeric columns as needed
+            
+        logger.info("Processed table data with enhanced price extraction")
         return data
+        
+    def get_price_statistics(self, data):
+        """Calculate price statistics from the processed data."""
+        if not data:
+            logger.warning("No data for price statistics")
+            return None
+            
+        # Process data if not already processed
+        processed_data = self.process_table_data(data) if 'Price_Value' not in data[0] else data
+        
+        if not processed_data:
+            return None
+            
+        # Extract price values
+        price_values = [item.get('Price_Value', 0.0) for item in processed_data]
+        
+        # Calculate statistics
+        stats = {
+            'count': len(price_values),
+            'min': min(price_values) if price_values else 0,
+            'max': max(price_values) if price_values else 0,
+            'avg': sum(price_values) / len(price_values) if price_values else 0,
+            'total': sum(price_values)
+        }
+        
+        logger.info(f"Calculated price statistics: {stats}")
+        return stats

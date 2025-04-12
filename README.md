@@ -15,6 +15,29 @@ A robust example of table data extraction using Selenium. This project demonstra
 - Data validation and processing
 - CSV output generation
 
+### Sample E-Commerce Scraping
+
+Located in: `./sample-e-commerce-scraping/`
+
+A comprehensive example of scraping e-commerce websites with pagination. This project showcases:
+- Category and subcategory navigation
+- Product data extraction (title, price, description, ratings)
+- Pagination handling
+- Structured data organization
+- Error prevention with polling-based approaches
+
+### Sample E-Commerce Scrolling Scraping
+
+Located in: `./sample-e-commerce-scrolling-scraping/`
+
+An advanced example of scraping e-commerce sites with infinite scrolling. Features include:
+- Infinite scroll detection and handling
+- Dynamic content loading
+- End-of-content detection
+- Duplicate product prevention
+- Category navigation
+- Efficient scroll-based data extraction
+
 ## Common Design Principles
 
 All projects in this repository follow these core principles:
@@ -32,3 +55,12 @@ Each project has its own README with specific instructions for running and confi
 ## Requirements
 
 See individual project requirements.txt files for specific dependencies.
+
+## Target Websites
+
+The samples in this repository target the following demo websites:
+- Table Scraping: https://webscraper.io/test-sites/tables
+- E-Commerce Scraping: https://webscraper.io/test-sites/e-commerce/allinone
+- E-Commerce Scrolling: https://webscraper.io/test-sites/e-commerce/scroll
+
+These are safe, legal test sites specifically designed for practicing web scraping. Always ensure you have permission before scraping any website.

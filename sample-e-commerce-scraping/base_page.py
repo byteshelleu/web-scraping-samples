@@ -1,13 +1,13 @@
 """Base page class for web scraping projects."""
 
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 import logging
+import time
+
 
 class BasePage:
     """Base class for all page objects."""
-    
+
     def __init__(self, driver, timeout=10):
         """Initialize the base page.
         
@@ -17,9 +17,8 @@ class BasePage:
         """
         self.driver = driver
         self.timeout = timeout
-        self.wait = WebDriverWait(self.driver, self.timeout)
         self.logger = logging.getLogger(__name__)
-    
+
     def open_url(self, url):
         """Navigate to the specified URL.
         
@@ -32,7 +31,7 @@ class BasePage:
         self.logger.info(f"Navigating to {url}")
         self.driver.get(url)
         return True
-        
+
     def find_element(self, locator):
         """Find a single element on the page.
         
@@ -42,15 +41,29 @@ class BasePage:
         Returns:
             WebElement if found, None otherwise
         """
-        try:
-            element = self.wait.until(
-                EC.presence_of_element_located(locator)
-            )
-            return element
-        except (TimeoutException, NoSuchElementException):
-            self.logger.warning(f"Element not found with locator: {locator}")
-            return None
-    
+        # Custom polling implementation without exceptions
+        start_time = time.time()
+        
+        # Poll until timeout
+        while time.time() - start_time < self.timeout:
+            # Direct element access
+            elements = self.driver.find_elements(*locator)
+            
+            # Check if we found any elements
+            if elements:
+                element = elements[0]
+                
+                # Check if the element is a proper WebElement (not a boolean)
+                if not isinstance(element, bool) and hasattr(element, 'is_displayed'):
+                    return element  # Success - valid element found
+            
+            # Small sleep to avoid hammering the CPU
+            time.sleep(0.5)
+        
+        # If we get here, we've timed out
+        self.logger.warning(f"Element not found with locator: {locator}")
+        return None
+
     def find_elements(self, locator):
         """Find multiple elements on the page.
         
@@ -60,76 +73,27 @@ class BasePage:
         Returns:
             List of WebElements if found, empty list otherwise
         """
-        try:
-            elements = self.wait.until(
-                EC.presence_of_all_elements_located(locator)
-            )
-            return elements
-        except (TimeoutException, NoSuchElementException):
-            self.logger.warning(f"Elements not found with locator: {locator}")
-            return []
-    
-    def is_element_present(self, locator):
-        """Check if an element is present on the page.
+        # Custom polling implementation without exceptions
+        start_time = time.time()
+        valid_elements = []
         
-        Args:
-            locator: Tuple of (By.XX, "selector")
+        # Poll until timeout
+        while time.time() - start_time < self.timeout:
+            # Direct elements access
+            all_elements = self.driver.find_elements(*locator)
             
-        Returns:
-            True if element is present, False otherwise
-        """
-        try:
-            self.wait.until(
-                EC.presence_of_element_located(locator)
-            )
-            return True
-        except (TimeoutException, NoSuchElementException):
-            return False
-    
-    def click_element(self, locator):
-        """Click on an element.
-        
-        Args:
-            locator: Tuple of (By.XX, "selector")
+            # Filter out boolean values and invalid elements
+            valid_elements = [e for e in all_elements if not isinstance(e, bool) and hasattr(e, 'is_displayed')]
             
-        Returns:
-            True if click is successful, False otherwise
-        """
-        element = self.find_element(locator)
-        if element:
-            try:
-                element.click()
-                return True
-            except Exception as e:
-                self.logger.warning(f"Failed to click element {locator}: {e}")
-                return False
-        return False
-    
-    def get_text(self, locator):
-        """Get text from an element.
-        
-        Args:
-            locator: Tuple of (By.XX, "selector")
+            # If we found valid elements, return them
+            if valid_elements:
+                return valid_elements
             
-        Returns:
-            Text as string if element is found, empty string otherwise
-        """
-        element = self.find_element(locator)
-        if element:
-            return element.text
-        return ""
+            # Small sleep to avoid hammering the CPU
+            time.sleep(0.5)
         
-    def get_attribute(self, locator, attribute):
-        """Get attribute value from an element.
+        # If we get here, we've timed out
+        if not valid_elements:
+            self.logger.warning(f"No valid elements found with locator: {locator}")
         
-        Args:
-            locator: Tuple of (By.XX, "selector")
-            attribute: Name of the attribute
-            
-        Returns:
-            Attribute value as string if found, empty string otherwise
-        """
-        element = self.find_element(locator)
-        if element:
-            return element.get_attribute(attribute) or ""
-        return ""
+        return valid_elements

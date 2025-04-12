@@ -12,11 +12,14 @@ https://webscraper.io/test-sites/e-commerce/allinone
 ## Features
 
 - Extracts product information including title, price, description, and ratings
-- Organizes products by category
-- Supports pagination
-- Extracts numeric price values for data analysis
+- Navigates through multiple categories and subcategories
+- Supports pagination to extract products across multiple pages
+- Processes and validates extracted data (e.g., extracting numeric price values)
+- Performs price statistics calculations (min, max, average, total)
 - Saves data in structured CSV format
-- Includes comprehensive logging
+- Includes comprehensive logging with timestamps
+- Implements polling-based approaches instead of try/except blocks
+- Handles edge cases with explicit checks and null safety patterns
 
 ## Project Structure
 
@@ -34,8 +37,8 @@ https://webscraper.io/test-sites/e-commerce/allinone
 This project adheres to the following design principles:
 - No try/except blocks for flow control
 - Cognitive complexity kept under 15
-- Centralized locators
-- Explicit waits
+- Centralized locators for better maintainability
+- Explicit waits with polling-based approaches
 - Clean, modular code structure
 - Page Object Model pattern
 - Instance methods over static methods
@@ -70,18 +73,20 @@ python ecommerce_scraper.py
 The script will:
 1. Initialize a Chrome WebDriver
 2. Navigate to the e-commerce website
-3. Identify categories
-4. Scrape product information from each category
-5. Process and validate the data
-6. Save the results to a CSV file (default: `scraped_products.csv`)
+3. Identify categories and subcategories
+4. Navigate through each category
+5. Handle pagination to extract all products
+6. Process and validate the data
+7. Calculate price statistics
+8. Save the results to a CSV file
 
 ## Configuration
 
 You can modify the following settings in `config.py`:
 - `BASE_URL` - URL of the e-commerce website
 - `HEADLESS_MODE` - Whether to run the browser in headless mode
-- `WAIT_TIMEOUT` - Maximum time to wait for elements
-- `OUTPUT_FILE` - Name of the output CSV file
+- `WEBDRIVER_TIMEOUT` - Maximum time to wait for elements
+- `DEFAULT_OUTPUT_FILE` - Name of the output CSV file
 
 ## Output Structure
 
@@ -95,3 +100,6 @@ The scraper produces a CSV file with the following columns:
 - `stars` - Star rating (when available)
 - `url` - URL to the product page
 - `category` - Product category
+- `subcategory` - Product subcategory (when available)
+
+Additionally, the console output and logs will display price statistics for each category, including minimum, maximum, average, and total prices.

@@ -12,6 +12,7 @@ The main challenges addressed by this project include:
 2. Avoiding duplicate extraction of products
 3. Determining when all content has been loaded
 4. Managing memory usage during long scrolling sessions
+5. Handling attribute references safely without try/except blocks
 
 ## Features
 
@@ -20,7 +21,9 @@ The main challenges addressed by this project include:
 - **End of Content Detection**: Multiple methods to determine when all content has been loaded
 - **Robust Data Extraction**: Extracts comprehensive product data including titles, prices, descriptions, and ratings
 - **Data Processing**: Processes raw extracted data into a consistent format
-- **Detailed Logging**: Comprehensive logging of the scraping process
+- **Category Navigation**: Supports navigation between different product categories
+- **Null-Safety Patterns**: Implements explicit checks for null values, booleans, and attribute existence
+- **Price Analysis**: Calculates price statistics including min, max, average, and total
 - **Clean Code Design**: Follows best practices with clear separation of concerns and low cognitive complexity
 
 ## Project Structure
@@ -38,22 +41,26 @@ The main challenges addressed by this project include:
 
 1. **Initialization**: Set up WebDriver, page objects, and data handler
 2. **Page Navigation**: Load the target e-commerce website
-3. **Scrolling and Data Extraction**:
+3. **Category Selection**: Navigate to a specific category (if specified)
+4. **Scrolling and Data Extraction**:
    - Scroll to the bottom of the currently loaded content
-   - Wait for new content to load
+   - Wait for new content to load (checks loading indicators)
    - Extract newly visible products
    - Detect duplicates using unique product identifiers
-   - Determine if end of content has been reached
+   - Check for end-of-content indicators
    - Repeat until all products are extracted or max scrolls reached
-4. **Data Processing**: Process and validate the extracted product data
-5. **Data Storage**: Save the processed data to a CSV file
+5. **Data Processing**: Process and validate the extracted product data
+6. **Price Analysis**: Calculate statistics on product prices
+7. **Data Storage**: Save the processed data to a CSV file
 
-## Performance Optimization
+## Error Handling Approach
 
-- Uses document height and product count to determine if new content was loaded
-- Implements safety limits on maximum scrolls to prevent infinite loops
-- Detects loading indicators to ensure content is fully loaded before extraction
-- Minimizes DOM operations to improve performance
+This project follows a strict no try/except approach to error handling:
+- Uses polling-based approaches to wait for elements
+- Implements predicate functions to verify conditions
+- Performs explicit null checks and type validation
+- Uses hasattr() to verify object properties before access
+- Handles edge cases with boolean checks rather than exception catching
 
 ## Usage
 
@@ -76,23 +83,27 @@ For each product, the scraper extracts:
 - Price (with numeric value extraction)
 - Description
 - Rating information (including review count and stars)
-- Product URL
+- Category information
+- URL (when applicable)
 
 ## Customization
 
 The behavior of the scraper can be customized through the `config.py` file:
 - `HEADLESS_MODE`: Run in headless mode (no visible browser)
-- `WAIT_TIMEOUT`: Maximum time to wait for elements
+- `WEBDRIVER_TIMEOUT`: Maximum time to wait for elements
 - `SCROLL_PAUSE_TIME`: Time to pause between scrolls
 - `MAX_SCROLLS`: Maximum number of scrolls to attempt
-- `OUTPUT_FILE`: Name of the output CSV file
+- `DEFAULT_OUTPUT_FILE`: Name of the output CSV file
+- `BASE_URL`: Target website URL
 
 ## Design Principles
 
 This scraper follows these key design principles:
 - No try/except blocks for flow control
-- Cognitive complexity under 15
-- Centralized locators
+- Cognitive complexity under 15 for all methods
+- Centralized locators in separate file
 - Explicit waits instead of sleep
+- Polling-based approach for element detection
 - Page Object Model architecture
 - Instance methods instead of static methods
+- Null-safe attribute access with explicit type checking

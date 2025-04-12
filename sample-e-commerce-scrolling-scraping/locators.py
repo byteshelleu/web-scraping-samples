@@ -2,12 +2,12 @@
 
 from selenium.webdriver.common.by import By
 
+
 class ScrollingEcommerceLocators:
     """Locators for the scrolling e-commerce website elements."""
     
     # Main container elements
     PRODUCT_CONTAINER = (By.CSS_SELECTOR, ".thumbnail")
-    PRODUCTS_WRAPPER = (By.CSS_SELECTOR, ".wrapper")
     
     # Product elements
     PRODUCT_TITLE = (By.CSS_SELECTOR, ".title")
@@ -19,15 +19,10 @@ class ScrollingEcommerceLocators:
     
     # Loading indicators
     LOADING_INDICATOR = (By.CSS_SELECTOR, ".loading-indicator")
-    LOADING_TEXT = (By.CSS_SELECTOR, ".loading-text")
     
-    # Navigation elements
-    NAVIGATION_MENU = (By.CSS_SELECTOR, ".navbar")
-    
-    # Product details page elements
-    PRODUCT_DETAILS_CONTAINER = (By.CSS_SELECTOR, ".product-details")
-    PRODUCT_IMAGE = (By.CSS_SELECTOR, ".img-responsive")
-    ADD_TO_CART_BUTTON = (By.CSS_SELECTOR, ".btn-success")
+    # Navigation and category locators (matching the sample-e-commerce-scraping project)
+    CATEGORY_LINK = (By.CSS_SELECTOR, ".sidebar-nav a")
+    EXPANDED_MENU = (By.CSS_SELECTOR, ".sidebar-nav li.open, .sidebar-nav li.active")
     
     # End of content indicators (may vary based on site implementation)
     END_OF_CONTENT_MESSAGE = (By.CSS_SELECTOR, ".end-of-results")

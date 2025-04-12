@@ -5,6 +5,10 @@ from base_page import BasePage
 from locators import ScrollingEcommerceLocators
 from selenium.webdriver.common.by import By
 import logging
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+
 
 class ScrollingPage(BasePage):
     """Page object for handling infinite scrolling e-commerce pages."""
@@ -80,10 +84,9 @@ class ScrollingPage(BasePage):
         Returns:
             True if end of content is reached, False otherwise
         """
-        # Check if document height hasn't changed
+        # Check if document height hasn't changed AND no new products were loaded
+        # Both conditions must be true to consider we've reached the end
         height_unchanged = previous_height == current_height
-        
-        # Check if no new products were loaded
         no_new_products = previous_product_count == current_product_count
         
         # Check for end-of-content message (may not be present on all sites)
@@ -94,79 +97,233 @@ class ScrollingPage(BasePage):
         no_more_indicators = self.find_elements_without_wait(ScrollingEcommerceLocators.NO_MORE_PRODUCTS_INDICATOR)
         no_more_indicator_visible = any(ind.is_displayed() for ind in no_more_indicators) if no_more_indicators else False
         
-        return height_unchanged or no_new_products or end_message_visible or no_more_indicator_visible
+        # We need BOTH unchanged height AND no new products to conclude we're at the end
+        # OR explicit end indicators
+        return (height_unchanged and no_new_products) or end_message_visible or no_more_indicator_visible
     
-    def scroll_and_extract_products(self, max_scrolls=20, scroll_pause_time=1.5):
-        """Scroll through the page and extract all products.
+    def get_document_height(self):
+        """Get the current document height.
         
+        Returns:
+            Current document height as integer
+        """
+        return self.driver.execute_script("return document.body.scrollHeight")
+    
+    def scroll_to_bottom(self):
+        """Scroll to the bottom of the page."""
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        
+    def smooth_scroll_to_bottom(self):
+        """Scroll to the bottom with intermediate steps to ensure content triggers properly."""
+        # Get the current scroll height
+        current_height = self.get_document_height()
+        
+        # First do a complete scroll to bottom
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        
+        # Then do some smaller scrolls at different positions to trigger lazy loading
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight * 0.7);")
+        WebDriverWait(self.driver, 0.2).until(lambda d: True)
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight * 0.8);")
+        WebDriverWait(self.driver, 0.2).until(lambda d: True)
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight * 0.9);")
+        WebDriverWait(self.driver, 0.2).until(lambda d: True)
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    
+    def wait_for_page_height_change(self, previous_height, timeout=None):
+        """Wait for the page height to change after scrolling.
+        
+        Args:
+            previous_height: Height before scrolling
+            timeout: Optional custom timeout
+            
+        Returns:
+            New document height if changed, or previous_height if timed out
+        """
+        timeout = timeout if timeout is not None else self.timeout
+        
+        def height_changed(driver):
+            current_height = self.get_document_height()
+            if current_height > previous_height:
+                return current_height
+            return False
+        
+        end_time = time.time() + timeout
+        while time.time() < end_time:
+            result = height_changed(self.driver)
+            if result:
+                return result
+            WebDriverWait(self.driver, 0.2).until(lambda d: True)
+            
+        return previous_height
+    
+    def wait_for_loading_indicator_to_disappear(self, timeout=None):
+        """Wait for the loading indicator to disappear.
+        
+        Args:
+            timeout: Optional custom timeout
+            
+        Returns:
+            True if loading indicator disappeared, False if timed out
+        """
+        timeout = timeout if timeout is not None else self.timeout
+        
+        if not self.is_loading_indicator_visible():
+            return True
+        
+        end_time = time.time() + timeout
+        while time.time() < end_time:
+            if not self.is_loading_indicator_visible():
+                return True
+            WebDriverWait(self.driver, 0.2).until(lambda d: True)
+            
+        self.logger.warning("Loading indicator did not disappear within timeout")
+        return False
+
+    def scroll_and_extract_products(self, max_scrolls=50, scroll_pause_time=2.5):
+        """Scroll through the page and extract all products.
+
         Args:
             max_scrolls: Maximum number of scrolls to perform
             scroll_pause_time: Time to pause between scrolls
-            
+
         Returns:
             List of dictionaries containing product data
         """
         self.logger.info("Starting scroll and extract process")
         all_products = []
         scroll_count = 0
-        
-        # Get initial products
+        consecutive_no_new_products = 0
+        max_consecutive_no_new = 5  # Increased for more persistence
+
+        # Get initial product count and extract their data
         visible_products = self.get_visible_products()
-        all_products.extend(visible_products)
-        previous_product_count = len(visible_products)
-        
-        # Get initial document height
-        previous_height = self.get_document_height()
-        
-        # Continue scrolling while we have more content and haven't exceeded max_scrolls
-        while scroll_count < max_scrolls:
+        initial_count = len(visible_products)
+        self.logger.info(f"Initial product count: {initial_count}")
+
+        # Extract initial products
+        for product in visible_products:
+            product_data = self.extract_product_data(product)
+            if product_data:
+                all_products.append(product_data)
+
+        # Keep track of the number of products we've already seen
+        prev_product_count = initial_count
+
+        # Simple scroll loop: scroll to bottom, wait, extract new products, repeat
+        while scroll_count < max_scrolls and consecutive_no_new_products < max_consecutive_no_new:
             self.logger.info(f"Scroll {scroll_count + 1}/{max_scrolls}")
-            
-            # Scroll down to the bottom of the currently loaded content
-            self.scroll_to_bottom()
-            
-            # Wait for the page to load more content
-            time.sleep(scroll_pause_time)
-            
-            # Wait for any loading indicator to disappear
-            if self.is_loading_indicator_visible():
-                self.logger.info("Waiting for loading indicator to disappear")
-                # Give it a bit more time to disappear completely
-                time.sleep(scroll_pause_time)
-            
-            # Get new document height
-            current_height = self.get_document_height()
-            
-            # Get newly loaded products
+
+            # 1. Simple, direct scroll to bottom
+            self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+            # 2. Wait for new content to load
+            self._short_wait(scroll_pause_time)
+
+            # 3. Get all visible products after scrolling
             current_products = self.get_visible_products()
             current_product_count = len(current_products)
-            
-            # Check if we've reached the end of content
-            if self.is_end_of_content_reached(previous_height, current_height, 
-                                             previous_product_count, current_product_count):
-                self.logger.info("Reached end of content")
-                break
-            
-            # Extract only the newly loaded products (avoid duplicates)
-            newly_loaded_products = []
-            for product in current_products:
-                product_id = self._get_product_identifier(product)
-                if product_id not in self.seen_product_ids:
-                    self.seen_product_ids.add(product_id)
-                    data = self.extract_product_data(product)
-                    if data:
-                        newly_loaded_products.append(data)
-            
-            self.logger.info(f"Extracted {len(newly_loaded_products)} new products in this scroll")
-            all_products.extend(newly_loaded_products)
-            
-            # Update for next iteration
-            previous_height = current_height
-            previous_product_count = current_product_count
+            self.logger.info(f"Current product count: {current_product_count}")
+
+            # 4. Extract new products if we found any
+            if current_product_count > prev_product_count:
+                # Extract only new products (those we haven't seen before)
+                new_products = current_products[prev_product_count:]
+                new_product_count = 0
+
+                for product in new_products:
+                    product_data = self.extract_product_data(product)
+                    if product_data:
+                        all_products.append(product_data)
+                        new_product_count += 1
+
+                self.logger.info(f"Extracted {new_product_count} new products")
+                consecutive_no_new_products = 0
+            else:
+                consecutive_no_new_products += 1
+                self.logger.info(f"No new products found in {consecutive_no_new_products} consecutive scrolls")
+
+                # If we're stuck, try a different approach
+                if consecutive_no_new_products == 3:
+                    self.logger.info("Trying alternative scrolling technique")
+
+                    # Scroll back up then down to trigger loading
+                    self.driver.execute_script("window.scrollTo(0, 0);")
+                    self._short_wait(scroll_pause_time / 2)
+                    self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+                    self._short_wait(scroll_pause_time)
+
+                    # Check for new products again
+                    current_products = self.get_visible_products()
+                    current_product_count = len(current_products)
+                    self.logger.info(f"After alternative scrolling: {current_product_count} products")
+
+                    # If we found new products, process them
+                    if current_product_count > prev_product_count:
+                        new_products = current_products[prev_product_count:]
+                        new_product_count = 0
+
+                        for product in new_products:
+                            product_data = self.extract_product_data(product)
+                            if product_data:
+                                all_products.append(product_data)
+                                new_product_count += 1
+
+                        self.logger.info(f"Extracted {new_product_count} new products after alternative scrolling")
+                        consecutive_no_new_products = 0
+
+            # 5. Update product count for next iteration
+            prev_product_count = current_product_count
             scroll_count += 1
-        
+
+        if consecutive_no_new_products >= max_consecutive_no_new:
+            self.logger.info("Reached end of content - no new products after multiple scrolls")
+        elif scroll_count >= max_scrolls:
+            self.logger.info("Reached maximum number of scrolls")
+
         self.logger.info(f"Total scrolls: {scroll_count}, Total products extracted: {len(all_products)}")
         return all_products
+        
+    def _trigger_content_loading(self):
+        """Use multiple methods to trigger content loading."""
+        # Method 1: Scroll to bottom
+        self.scroll_to_bottom()
+        
+        # Method 2: Send Page Down key if html element exists
+        html_elements = self.driver.find_elements(By.TAG_NAME, "html")
+        if html_elements and len(html_elements) > 0:
+            html_elements[0].send_keys(Keys.PAGE_DOWN)
+        
+        # Method 3: Execute JavaScript to scroll incrementally
+        self.driver.execute_script("window.scrollBy(0, window.innerHeight);")
+
+    def _try_alternative_scrolling(self):
+        """Try different scrolling approaches to trigger content loading."""
+        # Try different scroll positions
+        scroll_positions = [0.3, 0.5, 0.7, 0.9, 1.0]
+        for position in scroll_positions:
+            self.driver.execute_script(f"window.scrollTo(0, document.body.scrollHeight * {position});")
+            self._short_wait(0.3)
+            
+        # Try scrolling up then down
+        self.driver.execute_script("window.scrollTo(0, 0);")
+        self._short_wait(0.5)
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        
+        # Try moving mouse to bottom of page with ActionChains if body element exists
+        body_elements = self.driver.find_elements(By.TAG_NAME, "body")
+        if body_elements and len(body_elements) > 0:
+            action = ActionChains(self.driver)
+            action.move_to_element(body_elements[0]).perform()
+            action.send_keys(Keys.END).perform()
+    
+    def _short_wait(self, seconds):
+        """A very short wait without using time.sleep.
+        
+        Args:
+            seconds: Number of seconds to wait
+        """
+        WebDriverWait(self.driver, seconds).until(lambda d: True)
     
     def get_visible_products(self):
         """Get all currently visible product elements on the page.
@@ -272,3 +429,151 @@ class ScrollingPage(BasePage):
         
         self.logger.info(f"Extracted data for product: {product_data.get('title', 'Unknown')}")
         return product_data
+    
+    def get_categories(self):
+        """Get all categories available in the sidebar navigation.
+        
+        Returns:
+            Dictionary mapping category names to their WebElements
+        """
+        self.logger.info("Getting all categories")
+        categories = {}
+        
+        category_links = self.find_elements_without_wait(ScrollingEcommerceLocators.CATEGORY_LINK)
+        
+        for element in category_links:
+            if element.is_displayed() and element.text.strip():
+                # Check if this is a top-level category (direct child of sidebar-nav)
+                parent = self.driver.execute_script("return arguments[0].parentElement", element)
+                if parent:
+                    parent_class = parent.get_attribute("class") or ""
+                    # Only include top-level items
+                    if "sidebar-nav" in parent_class or parent.tag_name == "li" and parent.get_attribute("class") != "li":
+                        name = element.text.strip()
+                        categories[name] = element
+                        self.logger.info(f"Found category: {name}")
+        
+        return categories
+
+    def expand_category_if_needed(self, category_name):
+        """Expand a category menu if it's not already expanded.
+
+        Args:
+            category_name: Name of the category to expand
+
+        Returns:
+            True if successful, False otherwise
+        """
+        self.logger.info(f"Checking if category needs expanding: {category_name}")
+
+        # First check if the category is already expanded
+        expanded_menus = self.find_elements(EcommerceLocators.EXPANDED_MENU)
+        for menu in expanded_menus:
+            # Check if menu is a valid element
+            if menu is None or isinstance(menu, bool) or not hasattr(menu, 'is_displayed'):
+                continue
+
+            link = self._get_element_safely(menu, (By.TAG_NAME, "a"))
+            # Check if link is a valid element with text attribute
+            if link and hasattr(link, 'text') and link.text.strip() == category_name:
+                self.logger.info(f"Category {category_name} is already expanded")
+                return True
+
+        # If not expanded, find and click the category
+        categories = self.get_categories()
+        if category_name in categories:
+            category_element = categories[category_name]
+            # Check if the category element is valid and can be clicked
+            if category_element is None or isinstance(category_element, bool) or not hasattr(category_element, 'click'):
+                self.logger.warning(f"Invalid category element for: {category_name}")
+                return False
+
+            category_element.click()
+            time.sleep(1)  # Wait for animation
+            self.logger.info(f"Expanded category: {category_name}")
+            return True
+
+        self.logger.warning(f"Could not expand category: {category_name}")
+        return False
+    
+    def get_subcategories(self, parent_category):
+        """Get subcategories for a specific parent category.
+        
+        Args:
+            parent_category: Name of the parent category
+            
+        Returns:
+            Dictionary mapping subcategory names to their elements
+        """
+        self.logger.info(f"Getting subcategories for {parent_category}")
+        
+        # First ensure the parent category is expanded
+        if not self.expand_category_if_needed(parent_category):
+            return {}
+        
+        # Find all expanded category containers
+        expanded_containers = self.find_elements_without_wait(ScrollingEcommerceLocators.EXPANDED_MENU)
+        for container in expanded_containers:
+            # Check if this is the container for our parent category
+            header = self._get_element_safely(container, (By.TAG_NAME, "a"))
+            if header and header.text.strip() == parent_category:
+                # If this is our category, find all subcategory links
+                subcategory_links = container.find_elements(By.CSS_SELECTOR, "ul li a")
+                subcategories = {}
+                
+                for link in subcategory_links:
+                    name = link.text.strip()
+                    if name:
+                        subcategories[name] = link
+                        self.logger.info(f"Found subcategory: {name}")
+                
+                return subcategories
+        
+        return {}
+    
+    def navigate_to_category(self, category_name):
+        """Navigate to a specific category.
+        
+        Args:
+            category_name: Name of the category to navigate to
+            
+        Returns:
+            True if navigation was successful, False otherwise
+        """
+        self.logger.info(f"Navigating to category: {category_name}")
+        categories = self.get_categories()
+        
+        if category_name in categories:
+            categories[category_name].click()
+            # Reset seen product IDs when navigating to a new page
+            self.seen_product_ids = set()
+            self.logger.info(f"Navigated to category: {category_name}")
+            return True
+        
+        self.logger.warning(f"Category not found: {category_name}")
+        return False
+    
+    def navigate_to_subcategory(self, parent_category, subcategory_name):
+        """Navigate to a specific subcategory.
+        
+        Args:
+            parent_category: Name of the parent category
+            subcategory_name: Name of the subcategory to navigate to
+            
+        Returns:
+            True if navigation was successful, False otherwise
+        """
+        self.logger.info(f"Navigating to subcategory: {subcategory_name} under {parent_category}")
+        
+        # Get subcategories for the parent
+        subcategories = self.get_subcategories(parent_category)
+        
+        if subcategory_name in subcategories:
+            subcategories[subcategory_name].click()
+            # Reset seen product IDs when navigating to a new page
+            self.seen_product_ids = set()
+            self.logger.info(f"Navigated to subcategory: {subcategory_name}")
+            return True
+        
+        self.logger.warning(f"Subcategory {subcategory_name} not found under {parent_category}")
+        return False
