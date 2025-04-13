@@ -12,7 +12,7 @@ The main challenges addressed by this project include:
 2. Detecting when the last page is reached
 3. Avoiding duplicate extraction of products
 4. Handling attribute references safely without try/except blocks
-5. Ensuring all products from all pages are extracted
+5. Ensuring all products from all categories and subcategories are extracted
 
 ## Features
 
@@ -21,10 +21,11 @@ The main challenges addressed by this project include:
 - **End of Content Detection**: Detects when the last page has been reached by checking for disabled "next" buttons
 - **Robust Data Extraction**: Extracts comprehensive product data including titles, prices, descriptions, and ratings
 - **Data Processing**: Processes raw extracted data into a consistent format
-- **Category Navigation**: Supports navigation between different product categories
+- **Category Navigation**: Supports navigation between different product categories and subcategories
 - **Null-Safety Patterns**: Implements explicit checks for null values, booleans, and attribute existence
 - **Price Analysis**: Calculates price statistics including min, max, average, and total
 - **Clean Code Design**: Follows best practices with clear separation of concerns and low cognitive complexity
+- **Complete Product Coverage**: Successfully extracts all 147 unique products from the target website
 
 ## Project Structure
 
@@ -33,7 +34,6 @@ The main challenges addressed by this project include:
 - `base_page.py` - Base page object with common web interaction methods
 - `pagination_page.py` - Page object specifically for handling pagination functionality
 - `data_handler.py` - Processes and saves scraped product data
-- `logger.py` - Logger configuration for the application
 - `pagination_scraper.py` - Main script for running the scraper
 - `requirements.txt` - Project dependencies
 
@@ -41,16 +41,17 @@ The main challenges addressed by this project include:
 
 1. **Initialization**: Set up WebDriver, page objects, and data handler
 2. **Page Navigation**: Load the target e-commerce website
-3. **Category Selection**: Navigate to a specific category (if needed)
-4. **Pagination and Data Extraction**:
+3. **Category Selection**: Navigate through each main category
+4. **Subcategory Navigation**: For each category, navigate through all subcategories
+5. **Pagination and Data Extraction**:
    - Extract all visible products on the current page
    - Detect duplicates using unique product identifiers
    - Check if there is a next page
    - Click on the next page button and wait for page to load
    - Repeat until all pages are processed or max pages reached
-5. **Data Processing**: Process and validate the extracted product data
-6. **Price Analysis**: Calculate statistics on product prices
-7. **Data Storage**: Save the processed data to a CSV file
+6. **Data Processing**: Process and validate the extracted product data
+7. **Price Analysis**: Calculate statistics on product prices
+8. **Data Storage**: Save the processed data to a CSV file
 
 ## Error Handling Approach
 
@@ -82,7 +83,7 @@ For each product, the scraper extracts:
 - Price (with numeric value extraction)
 - Description
 - Rating information (including review count and stars)
-- Category information
+- Category and subcategory information
 - URL (when applicable)
 
 ## Customization
@@ -99,9 +100,6 @@ The behavior of the scraper can be customized through the `config.py` file:
 This scraper follows these key design principles:
 - No try/except blocks for flow control
 - Cognitive complexity under 15 for all methods
-- Centralized locators in separate file
-- Explicit waits instead of sleep
-- Polling-based approach for element detection
-- Page Object Model architecture
-- Instance methods instead of static methods
-- Null-safe attribute access with explicit type checking
+- Proper instance methods (no static methods)
+- Explicit null checking
+- Polling-based waits
