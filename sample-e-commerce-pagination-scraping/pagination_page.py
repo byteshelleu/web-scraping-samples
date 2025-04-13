@@ -129,7 +129,7 @@ class PaginationPage(BasePage):
         description = description_text[:50] if description_text else ""  # First 50 chars for efficiency
         
         return f"{title}|{price}|{description}"
-    
+
     def get_attribute(self, element, attribute):
         """Get attribute value from an element, overriding the BasePage method.
 
@@ -142,10 +142,10 @@ class PaginationPage(BasePage):
         """
         if element is None or isinstance(element, bool):
             return ""
-            
+
         if not hasattr(element, 'get_attribute'):
             return ""
-            
+
         attribute_value = element.get_attribute(attribute)
         return attribute_value if attribute_value else ""
 
