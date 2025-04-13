@@ -1,0 +1,60 @@
+2025-04-13 12:04:24,328 - table_scraper - INFO - Table scraping started
+2025-04-13 12:04:26,067 - table_scraper - INFO - WebDriver initialized
+2025-04-13 12:04:26,068 - table_scraper - INFO - Navigating to https://webscraper.io/test-sites/tables
+2025-04-13 12:04:26,873 - table_scraper - INFO - Navigated to table test page: https://webscraper.io/test-sites/tables
+2025-04-13 12:04:27,877 - table_scraper - INFO - Extracting data from all tables across all navigation links
+2025-04-13 12:04:29,075 - table_scraper - INFO - Found 3 navigation links
+2025-04-13 12:04:29,075 - table_scraper - INFO - Navigating to link: Semantically correct tables
+2025-04-13 12:04:29,078 - table_scraper - INFO - Navigating to https://webscraper.io/test-sites/tables/tables-semantically-correct
+2025-04-13 12:04:30,223 - table_scraper - INFO - Found 2 tables on current page
+2025-04-13 12:04:30,223 - table_scraper - INFO - Processing table 1 on current page
+2025-04-13 12:04:30,301 - table_scraper - INFO - Found 4 headers in table 1
+2025-04-13 12:04:30,313 - table_scraper - INFO - Found 3 rows in table 1
+2025-04-13 12:04:30,609 - table_scraper - INFO - Extracted 3 rows from table 1
+2025-04-13 12:04:30,609 - table_scraper - INFO - Processing table 2 on current page
+2025-04-13 12:04:30,672 - table_scraper - INFO - Found 4 headers in table 2
+2025-04-13 12:04:30,678 - table_scraper - INFO - Found 3 rows in table 2
+2025-04-13 12:04:30,938 - table_scraper - INFO - Extracted 3 rows from table 2
+2025-04-13 12:04:30,938 - table_scraper - INFO - Navigating to https://webscraper.io/test-sites/tables
+2025-04-13 12:04:32,037 - table_scraper - INFO - Navigating to link: Tables without the thead tag
+2025-04-13 12:04:32,038 - table_scraper - INFO - Navigating to https://webscraper.io/test-sites/tables/tables-without-thead
+2025-04-13 12:04:33,544 - table_scraper - INFO - Found 1 tables on current page
+2025-04-13 12:04:33,545 - table_scraper - INFO - Processing table 1 on current page
+2025-04-13 12:04:33,557 - table_scraper - INFO - Found 0 headers in table 1
+2025-04-13 12:04:33,633 - table_scraper - INFO - Found 4 headers in table 1 (alternate method)
+2025-04-13 12:04:33,641 - table_scraper - INFO - Found 4 rows in table 1
+2025-04-13 12:04:33,901 - table_scraper - INFO - Extracted 3 rows from table 1
+2025-04-13 12:04:33,901 - table_scraper - INFO - Navigating to https://webscraper.io/test-sites/tables
+2025-04-13 12:04:34,967 - table_scraper - INFO - Navigating to link: Tables with multiple header rows
+2025-04-13 12:04:34,968 - table_scraper - INFO - Navigating to https://webscraper.io/test-sites/tables/tables-multiple-header-rows
+2025-04-13 12:04:36,388 - table_scraper - INFO - Found 1 tables on current page
+2025-04-13 12:04:36,389 - table_scraper - INFO - Processing table 1 on current page
+2025-04-13 12:04:36,395 - table_scraper - INFO - Found 0 headers in table 1
+2025-04-13 12:04:36,440 - table_scraper - INFO - Found 3 headers in table 1 (alternate method)
+2025-04-13 12:04:36,446 - table_scraper - INFO - Found 6 rows in table 1
+2025-04-13 12:04:36,751 - table_scraper - INFO - Extracted 4 rows from table 1
+2025-04-13 12:04:36,751 - table_scraper - INFO - Navigating to https://webscraper.io/test-sites/tables
+2025-04-13 12:04:37,813 - table_scraper - INFO - Processing data from page: Semantically correct tables
+2025-04-13 12:04:37,813 - table_scraper - INFO - Data validation passed: 6 valid items
+2025-04-13 12:04:37,814 - table_scraper - INFO - Processed table data with enhanced price extraction
+2025-04-13 12:04:37,814 - table_scraper - INFO - Data validation passed: 6 valid items
+2025-04-13 12:04:37,815 - table_scraper - INFO - Data validation passed: 6 valid items
+2025-04-13 12:04:37,816 - table_scraper - INFO - Created DataFrame with 6 rows and 4 columns
+2025-04-13 12:04:37,819 - table_scraper - INFO - Data saved to scraped_Semantically_correct_tables_data.csv
+2025-04-13 12:04:37,820 - table_scraper - INFO - Semantically correct tables data saved to C:\Users\drago\CascadeProjects\web-scraping-samples\sample-table-scraping\scraped_Semantically_correct_tables_data.csv
+2025-04-13 12:04:37,821 - table_scraper - INFO - Processing data from page: Tables without the thead tag
+2025-04-13 12:04:37,821 - table_scraper - INFO - Data validation passed: 3 valid items
+2025-04-13 12:04:37,821 - table_scraper - INFO - Processed table data with enhanced price extraction
+2025-04-13 12:04:37,822 - table_scraper - INFO - Data validation passed: 3 valid items
+2025-04-13 12:04:37,822 - table_scraper - INFO - Data validation passed: 3 valid items
+2025-04-13 12:04:37,824 - table_scraper - INFO - Created DataFrame with 3 rows and 4 columns
+2025-04-13 12:04:37,825 - table_scraper - INFO - Data saved to scraped_Tables_without_the_thead_tag_data.csv
+2025-04-13 12:04:37,826 - table_scraper - INFO - Tables without the thead tag data saved to C:\Users\drago\CascadeProjects\web-scraping-samples\sample-table-scraping\scraped_Tables_without_the_thead_tag_data.csv
+2025-04-13 12:04:37,826 - table_scraper - INFO - Processing data from page: Tables with multiple header rows
+2025-04-13 12:04:37,826 - table_scraper - INFO - Data validation passed: 4 valid items
+2025-04-13 12:04:37,827 - table_scraper - INFO - Processed table data with enhanced price extraction
+2025-04-13 12:04:37,827 - table_scraper - INFO - Data validation passed: 4 valid items
+2025-04-13 12:04:37,827 - table_scraper - INFO - Data validation passed: 4 valid items
+2025-04-13 12:04:37,828 - table_scraper - INFO - Created DataFrame with 4 rows and 3 columns
+2025-04-13 12:04:37,830 - table_scraper - INFO - Data saved to scraped_Tables_with_multiple_header_rows_data.csv
+2025-04-13 12:04:37,830 - table_scraper - INFO - Tables with multiple header rows data saved to C:\Users\drago\CascadeProjects\web-scraping-samples\sample-table-scraping\scraped_Tables_with_multiple_header_rows_data.csv

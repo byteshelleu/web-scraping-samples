@@ -30,6 +30,20 @@ class DataHandler:
         full_path = os.path.abspath(filename)
         return full_path
     
+    def to_dataframe(self, data):
+        """Convert the data to a pandas DataFrame.
+        
+        Args:
+            data: List of dictionaries to convert
+            
+        Returns:
+            pandas DataFrame
+        """
+        if not data:
+            return pd.DataFrame()
+            
+        return pd.DataFrame(data)
+    
     def validate_data(self, data):
         """Validate the scraped data."""
         if not data:

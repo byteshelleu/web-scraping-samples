@@ -26,15 +26,56 @@ class TablePage(BasePage):
         """Get all the navigation links on the page.
         
         Returns:
-            List of WebElements representing navigation links
+            List of tuples containing (link_text, href) for each navigation link
         """
-        # Use a more specific selector to get only navigation links
-        nav_selector = (By.CSS_SELECTOR, ".col-md-3 a")
-        nav_links = self.driver.find_elements(*nav_selector)
-
-        # Filter out invalid elements
-        valid_links = [link for link in nav_links
-                       if link is not None and not isinstance(link, bool) and hasattr(link, 'text')]
+        # The links in the left sidebar from the screenshot are identified by these selectors
+        # Use a comprehensive list of selectors to ensure we capture all navigation links
+        nav_selectors = [
+            ".list-group-item",  # General list group items 
+            ".col-md-3 a.list-group-item",  # List group items in the sidebar
+            "a.semantically-correct-tables",  # Specific link classes from screenshot
+            "a.tables-without-the-thead-tag", 
+            "a.tables-with-multiple-header-rows"
+        ]
+        
+        # Try each selector until we find some links
+        all_links = []
+        for selector in nav_selectors:
+            links = self.driver.find_elements(By.CSS_SELECTOR, selector)
+            if links:
+                all_links.extend(links)
+        
+        # If we still didn't find any links, try a more generic approach
+        if not all_links:
+            # Look for any link in the page with relevant text content
+            relevant_text = ["semantically", "thead", "multiple header", "tables"]
+            all_page_links = self.driver.find_elements(By.TAG_NAME, "a")
+            
+            for link in all_page_links:
+                if link is None or isinstance(link, bool):
+                    continue
+                    
+                if not hasattr(link, 'text') or not hasattr(link, 'is_displayed'):
+                    continue
+                    
+                link_text = link.text.lower() if link.text else ""
+                if link.is_displayed() and any(text in link_text for text in relevant_text):
+                    all_links.append(link)
+        
+        # Store link information as tuples of (link_text, href) to avoid stale element issues
+        valid_links = []
+        for link in all_links:
+            if link is None or isinstance(link, bool):
+                continue
+                
+            if not hasattr(link, 'text') or not hasattr(link, 'get_attribute'):
+                continue
+                
+            link_text = link.text.strip()
+            link_href = link.get_attribute('href')
+            
+            if link_text and link_href:
+                valid_links.append((link_text, link_href))
 
         logger.info(f"Found {len(valid_links)} navigation links")
         return valid_links
@@ -47,7 +88,7 @@ class TablePage(BasePage):
         """
         all_pages_data = {}
 
-        # Get navigation links
+        # Get navigation links as (text, href) tuples to avoid stale element issues
         nav_links = self.get_navigation_links()
         if not nav_links:
             logger.warning("No navigation links found")
@@ -56,20 +97,12 @@ class TablePage(BasePage):
             all_pages_data["Main Page"] = current_page_data
             return all_pages_data
 
-        # Store original URL to navigate back after each scrape
-        original_url = self.driver.current_url
-
         # Process each navigation link
-        for link in nav_links:
-            # Skip invalid links
-            if not hasattr(link, 'text') or not hasattr(link, 'click'):
-                continue
+        for link_text, link_href in nav_links:
+            logger.info(f"Navigating to link: {link_text}")
 
-            link_text = link.text.strip()
-            logger.info(f"Clicking on navigation link: {link_text}")
-
-            # Click the link
-            link.click()
+            # Navigate directly to the href instead of clicking (avoids stale elements)
+            self.navigate_to(link_href)
             time.sleep(1)  # Allow page to load
 
             # Extract all tables from the current page after navigation
@@ -79,7 +112,7 @@ class TablePage(BasePage):
             all_pages_data[link_text] = tables_data
 
             # Return to original page for next navigation
-            self.navigate_to(original_url)
+            self.navigate_to(WEBSCRAPER_URL)
             time.sleep(1)  # Allow page to load
 
         return all_pages_data

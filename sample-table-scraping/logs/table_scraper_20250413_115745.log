@@ -1,0 +1,25 @@
+2025-04-13 11:57:45,188 - table_scraper - INFO - Table scraping started
+2025-04-13 11:57:46,975 - table_scraper - INFO - WebDriver initialized
+2025-04-13 11:57:46,975 - table_scraper - INFO - Navigating to https://webscraper.io/test-sites/tables
+2025-04-13 11:57:47,731 - table_scraper - INFO - Navigated to table test page: https://webscraper.io/test-sites/tables
+2025-04-13 11:57:48,732 - table_scraper - INFO - Extracting data from all tables across all navigation links
+2025-04-13 11:57:48,774 - table_scraper - INFO - Found 0 navigation links
+2025-04-13 11:57:48,774 - table_scraper - WARNING - No navigation links found
+2025-04-13 11:57:48,786 - table_scraper - INFO - Found 2 tables on current page
+2025-04-13 11:57:48,786 - table_scraper - INFO - Processing table 1 on current page
+2025-04-13 11:57:48,872 - table_scraper - INFO - Found 4 headers in table 1
+2025-04-13 11:57:48,884 - table_scraper - INFO - Found 3 rows in table 1
+2025-04-13 11:57:49,196 - table_scraper - INFO - Extracted 3 rows from table 1
+2025-04-13 11:57:49,197 - table_scraper - INFO - Processing table 2 on current page
+2025-04-13 11:57:49,268 - table_scraper - INFO - Found 4 headers in table 2
+2025-04-13 11:57:49,277 - table_scraper - INFO - Found 3 rows in table 2
+2025-04-13 11:57:49,573 - table_scraper - INFO - Extracted 3 rows from table 2
+2025-04-13 11:57:49,573 - table_scraper - INFO - Processing data from page: Main Page
+2025-04-13 11:57:49,573 - table_scraper - INFO - Data validation passed: 6 valid items
+2025-04-13 11:57:49,573 - table_scraper - INFO - Processed table data with enhanced price extraction
+2025-04-13 11:57:49,574 - table_scraper - INFO - Data validation passed: 6 valid items
+2025-04-13 11:57:49,574 - table_scraper - INFO - Data validation passed: 6 valid items
+2025-04-13 11:57:49,574 - table_scraper - WARNING - DataHandler missing to_dataframe method, skipping CSV export
+2025-04-13 11:57:49,575 - table_scraper - INFO - All scraped data saved to C:\Users\drago\CascadeProjects\web-scraping-samples\sample-table-scraping\all_scraped_data.json
+2025-04-13 11:57:49,576 - table_scraper - INFO - Closing WebDriver
+2025-04-13 11:57:51,815 - table_scraper - INFO - Table scraping completed
