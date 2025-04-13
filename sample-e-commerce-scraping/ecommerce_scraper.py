@@ -6,14 +6,13 @@ import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
-
-# Add absolute imports to ensure script runs locally
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
 from ecommerce_page import EcommercePage
 from data_handler import DataHandler
 from config import BASE_URL, HEADLESS_MODE, OUTPUT_FILE
 from logger import logger
+
+# Add absolute imports to ensure script runs locally
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 
 def setup_driver():

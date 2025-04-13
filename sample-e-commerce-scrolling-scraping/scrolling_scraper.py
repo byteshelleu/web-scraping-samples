@@ -10,7 +10,6 @@ import config
 from logger import setup_logger
 from scrolling_page import ScrollingPage
 from data_handler import DataHandler
-from locators import ScrollingEcommerceLocators
 
 
 def setup_driver(headless=True):

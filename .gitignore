@@ -1,0 +1,33 @@
+# Ignore log files
+*.log
+
+# Ignore CSV files (scraped data)
+*.csv
+
+# Ignore RULES.md
+RULES.md
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db

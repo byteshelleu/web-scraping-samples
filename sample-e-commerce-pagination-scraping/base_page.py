@@ -43,9 +43,6 @@ class BasePage:
         Returns:
             WebElement if found, None otherwise
         """
-        # Custom polling implementation without WebDriverWait or exceptions
-        import time
-
         start_time = time.time()
         element = None
 
@@ -78,9 +75,6 @@ class BasePage:
         Returns:
             List of WebElements if found, empty list otherwise
         """
-        # Custom polling implementation without WebDriverWait or exceptions
-        import time
-
         start_time = time.time()
         valid_elements = []
 
@@ -116,18 +110,24 @@ class BasePage:
         """
         return self.driver.find_elements(*locator)
 
-    def get_attribute(self, locator, attribute):
+    def get_attribute(self, element, attribute):
         """Get attribute value from an element.
 
         Args:
-            locator: Tuple of (By.XX, "selector")
+            element: WebElement to extract attribute from
             attribute: Name of the attribute
 
         Returns:
             Attribute value as string if found, empty string otherwise
         """
-        element = self.find_element(locator)
-        return element.get_attribute(attribute) or ""
+        if element is None or isinstance(element, bool):
+            return ""
+            
+        if not hasattr(element, 'get_attribute'):
+            return ""
+            
+        attribute_value = element.get_attribute(attribute)
+        return attribute_value if attribute_value else ""
     
     def execute_script(self, script, *args):
         """Execute JavaScript on the page.

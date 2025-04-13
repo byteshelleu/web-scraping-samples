@@ -292,7 +292,8 @@ class EcommercePage(BasePage):
         self.logger.info(f"Extracted data for product: {product_data.get('title', 'Unknown')}")
         return product_data
 
-    def _get_element_safely(self, parent, locator):
+    @staticmethod
+    def _get_element_safely(parent, locator):
         """Safely get an element without raising exceptions.
 
         Args:
@@ -332,7 +333,8 @@ class EcommercePage(BasePage):
 
         return element
 
-    def _get_elements_safely(self, parent, locator):
+    @staticmethod
+    def _get_elements_safely(parent, locator):
         """Safely get elements without raising exceptions.
 
         Args:

@@ -1,6 +1,5 @@
 """Base page class for web scraping projects."""
 
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
 import logging
 import time
 

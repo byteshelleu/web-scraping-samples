@@ -95,7 +95,8 @@ class ScrollingPage(BasePage):
         
         # Check for no-more-products message (may not be present on all sites)
         no_more_indicators = self.find_elements_without_wait(ScrollingEcommerceLocators.NO_MORE_PRODUCTS_INDICATOR)
-        no_more_indicator_visible = any(ind.is_displayed() for ind in no_more_indicators) if no_more_indicators else False
+        no_more_indicator_visible = any(ind.is_displayed() for ind in no_more_indicators) if no_more_indicators \
+            else False
         
         # We need BOTH unchanged height AND no new products to conclude we're at the end
         # OR explicit end indicators
@@ -115,8 +116,6 @@ class ScrollingPage(BasePage):
         
     def smooth_scroll_to_bottom(self):
         """Scroll to the bottom with intermediate steps to ensure content triggers properly."""
-        # Get the current scroll height
-        current_height = self.get_document_height()
         
         # First do a complete scroll to bottom
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -141,8 +140,8 @@ class ScrollingPage(BasePage):
             New document height if changed, or previous_height if timed out
         """
         timeout = timeout if timeout is not None else self.timeout
-        
-        def height_changed(driver):
+
+        def height_changed():
             current_height = self.get_document_height()
             if current_height > previous_height:
                 return current_height
@@ -150,11 +149,11 @@ class ScrollingPage(BasePage):
         
         end_time = time.time() + timeout
         while time.time() < end_time:
-            result = height_changed(self.driver)
+            result = height_changed()
             if result:
                 return result
             WebDriverWait(self.driver, 0.2).until(lambda d: True)
-            
+
         return previous_height
     
     def wait_for_loading_indicator_to_disappear(self, timeout=None):
@@ -339,8 +338,9 @@ class ScrollingPage(BasePage):
             self.seen_product_ids.add(product_id)
             
         return products
-    
-    def _get_element_safely(self, parent, locator):
+
+    @staticmethod
+    def _get_element_safely(parent, locator):
         """Safely get an element without raising exceptions.
         
         Args:
@@ -358,8 +358,9 @@ class ScrollingPage(BasePage):
             if elements:
                 return elements[0]
         return None
-    
-    def _get_elements_safely(self, parent, locator):
+
+    @staticmethod
+    def _get_elements_safely(parent, locator):
         """Safely get elements without raising exceptions.
         
         Args:
@@ -408,7 +409,8 @@ class ScrollingPage(BasePage):
             product_data['rating'] = rating_elements[0].text.strip()
             
             # Extract number of reviews
-            review_count_elements = self._get_elements_safely(product_element, ScrollingEcommerceLocators.PRODUCT_REVIEW_COUNT)
+            review_count_elements = self._get_elements_safely(product_element, ScrollingEcommerceLocators.
+                                                              PRODUCT_REVIEW_COUNT)
             if review_count_elements:
                 product_data['review_count'] = review_count_elements[0].text.strip()
             
@@ -448,7 +450,8 @@ class ScrollingPage(BasePage):
                 if parent:
                     parent_class = parent.get_attribute("class") or ""
                     # Only include top-level items
-                    if "sidebar-nav" in parent_class or parent.tag_name == "li" and parent.get_attribute("class") != "li":
+                    if ("sidebar-nav" in parent_class or parent.tag_name == "li" and
+                            parent.get_attribute("class") != "li"):
                         name = element.text.strip()
                         categories[name] = element
                         self.logger.info(f"Found category: {name}")
@@ -467,7 +470,7 @@ class ScrollingPage(BasePage):
         self.logger.info(f"Checking if category needs expanding: {category_name}")
 
         # First check if the category is already expanded
-        expanded_menus = self.find_elements(EcommerceLocators.EXPANDED_MENU)
+        expanded_menus = self.find_elements(ScrollingEcommerceLocators.EXPANDED_MENU)
         for menu in expanded_menus:
             # Check if menu is a valid element
             if menu is None or isinstance(menu, bool) or not hasattr(menu, 'is_displayed'):

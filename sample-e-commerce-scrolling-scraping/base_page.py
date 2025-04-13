@@ -1,9 +1,7 @@
 """Base page class for web scraping projects."""
 
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import TimeoutException
 import logging
-import time
 
 
 class BasePage:
@@ -47,7 +45,6 @@ class BasePage:
         import time
 
         start_time = time.time()
-        element = None
 
         # Poll until timeout
         while time.time() - start_time < self.timeout:

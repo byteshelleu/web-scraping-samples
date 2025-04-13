@@ -3,11 +3,9 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from config import WEBDRIVER_TIMEOUT
 from logger import logger
 import time
-from selenium.webdriver.common.by import By
 
 
 class BasePage:

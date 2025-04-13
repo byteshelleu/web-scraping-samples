@@ -15,10 +15,6 @@ def main():
     """Main entry point for the table scraper application."""
     logger.info("Table scraping started")
 
-    # Initialize the table page
-    table_page = None
-    data_handler = None
-
     # Initialize components with proper error checking
     table_page = TablePage(headless=HEADLESS_MODE)
     if not hasattr(table_page, 'driver') or table_page.driver is None:
@@ -96,7 +92,8 @@ def main():
                 total_price = price_stats.get('total', 0)
 
                 logger.info(
-                    f"{page_name} price statistics: Min=${min_price:.2f}, Max=${max_price:.2f}, Average=${avg_price:.2f}, Total=${total_price:.2f}")
+                    f"{page_name} price statistics: Min=${min_price:.2f}, Max=${max_price:.2f}, "
+                    f"Average=${avg_price:.2f}, Total=${total_price:.2f}")
 
             # Add a source column to identify which page the data came from
             for item in processed_data:

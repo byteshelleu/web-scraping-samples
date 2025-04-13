@@ -4,6 +4,7 @@ import logging
 import os
 from datetime import datetime
 
+
 def setup_logger(log_level=logging.INFO, log_to_file=True):
     """Set up logger for the application.
     

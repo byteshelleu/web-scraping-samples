@@ -69,7 +69,8 @@ class DataHandler:
         self.logger.info(f"Data validation successful for {len(valid_data)} items")
         return valid_data
 
-    def extract_review_count(self, rating_string):
+    @staticmethod
+    def extract_review_count(rating_string):
         """Extract review count from rating string.
         
         Args:

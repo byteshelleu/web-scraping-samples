@@ -6,10 +6,12 @@ import re
 from config import DEFAULT_OUTPUT_FILE
 from logger import logger
 
+
 class DataHandler:
     """Handler for processing and saving scraped data."""
-    
-    def save_to_csv(self, data, filename=DEFAULT_OUTPUT_FILE):
+
+    @staticmethod
+    def save_to_csv(data, filename=DEFAULT_OUTPUT_FILE):
         """Save the scraped data to a CSV file."""
         if not data:
             logger.warning("No data to save")
@@ -29,8 +31,9 @@ class DataHandler:
         # Return full path to the saved file
         full_path = os.path.abspath(filename)
         return full_path
-    
-    def to_dataframe(self, data):
+
+    @staticmethod
+    def to_dataframe(data):
         """Convert the data to a pandas DataFrame.
         
         Args:
@@ -43,8 +46,9 @@ class DataHandler:
             return pd.DataFrame()
             
         return pd.DataFrame(data)
-    
-    def validate_data(self, data):
+
+    @staticmethod
+    def validate_data(data):
         """Validate the scraped data."""
         if not data:
             logger.warning("Empty data received")
@@ -89,7 +93,7 @@ class DataHandler:
                 clean_price = price_text.replace('$', '').replace('€', '').replace('£', '').strip()
                 
                 # Extract numbers (allowing for different decimal/thousand separators)
-                price_match = re.search(r'([\d,\.]+)', clean_price)
+                price_match = re.search(r'([\d,.]+)', clean_price)
                 if price_match:
                     # Get the matched price and prepare for conversion
                     price_str = price_match.group(1)
